@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.fundo {
+    background-image: url("FundoSite.png");
+    font-family: Arial, sans-serif;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.logo {
+    height: 100px;
+    width: 140px;
+}
+
+.conteudo {
+    padding: 50px;
+    text-align: center;
+}
