@@ -1,3 +1,4 @@
+/*resets basicos para o site ficar sem as bordinhas ali nos cantos*/
 body {
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@ body {
 .fundo {
     background-image: url("FundoSite.png");
     font-family: Arial, sans-serif;
+    
 }
 
 .cabecalho {
@@ -23,6 +25,60 @@ body {
 }
 
 .conteudo {
-    padding: 50px;
+    padding: 20px;
+    color: white;
+}
+
+/*classe para centralizar os titulos e dar o efeito de corzinha*/
+.titulo {
     text-align: center;
+}
+
+.destaque-colorido {
+    /* criando um degrade "de fundo" */
+    background-image: linear-gradient(90deg, #4facfe 0%, #bf5ce0 60%, #ff5e98 100%);
+    
+    /*recortando o fundo, deixando apenas o texto desse retangulo desenhado pelo background image*/
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Deixando o texto transparente para que fique apenas o coloridinho */
+    color: transparent;
+
+    /*deixando a fonte mais grossa para ser mais visivel*/
+    font-weight: 1000; 
+    
+    /*removendo qualquer decoração como por exemplo o azul de um hiperlink*/
+    text-decoration: none;
+
+    /*fazendo o fundo ter a mesma largura do texto ali*/
+    display: inline-block;
+}
+
+.janela-texto {
+    display: flex;
+    align-content: center;
+    margin: 0 auto;
+
+    height: 200px;
+    width: 50%;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
+    backdrop-filter: blur(1px);
+
+    transition: all 0.5s ease;
+
+    border-radius: 20px;
+}
+
+/*adicionado um efeito quando houver o efeito de "hover" do cursor*/
+.janela-texto:hover {
+
+    /* corzinha clara para ficar bala*/
+    background-color: rgba(255, 255, 255, 0.2);
+
+    /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
+    backdrop-filter: blur(5px);
 }
