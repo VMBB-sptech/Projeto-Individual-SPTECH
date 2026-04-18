@@ -24,7 +24,7 @@ body {
     width: 140px;
 }
 
-.conteudo {
+.semi-conteudo {
     padding: 20px;
     color: white;
 }
@@ -32,6 +32,20 @@ body {
 /*classe para centralizar os titulos e dar o efeito de corzinha*/
 .titulo {
     text-align: center;
+}
+
+.menu {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.navPadding {
+    padding: 0 25px;
+}
+
+.navPadding:hover {
+    transition: all 0.5s ease-out;
 }
 
 .destaque-colorido {
@@ -57,20 +71,20 @@ body {
 
 .janela-texto {
     display: flex;
+    flex-direction: column;
     align-content: center;
     margin: 0 auto;
-
-    height: 200px;
-    width: 50%;
-
     background-color: rgba(0, 0, 0, 0.25);
 
     /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
     backdrop-filter: blur(1px);
-
-    transition: all 0.5s ease;
-
     border-radius: 20px;
+    min-height: 20px;
+    width: 300px;
+    overflow: hidden;
+
+    transition: all 0.5s ease-out;
+
 }
 
 /*adicionado um efeito quando houver o efeito de "hover" do cursor*/
@@ -81,4 +95,52 @@ body {
 
     /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
     backdrop-filter: blur(5px);
+    height: fit-content;
+    width: 50%; 
+}
+
+.conteudo {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;         /* deixando invisivel para esconder o texto */
+    overflow: hidden;   /* Escondendo o que sobrar*/
+    transition: all 0.5s ease 0.3s; 
+    gap: 20px;
+}
+
+.conteudo img {
+    align-self: center;
+}
+
+.janela-texto:hover .conteudo{
+    opacity: 1;
+    margin-top: 15px;
+    max-height: fit-content;
+}
+
+.login-button {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(191, 92, 224, 0.6);
+    border-radius: 25px;
+    padding: 10px 25px;
+    
+    font-size: 15px;
+    font-weight: bold;
+    /* propriedade a ser alterada | duração até alterar | sentido da alteração EX: indo ou voltando | atraso */
+    transition: all 0.3s ease; 
+}
+
+.login-button:hover {
+    background-color: rgba(191, 92, 224, 0.8);
+    border-color: rgba(79, 172, 254, 0.8);
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
+    transform: scale(1.05); /* multiplicando o tamanho do item com a classe em +5% */
+
 }
