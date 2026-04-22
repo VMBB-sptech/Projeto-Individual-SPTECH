@@ -6,7 +6,7 @@ body {
 }
 
 .fundo {
-    background-image: url("FundoSite.png");
+    background-image: url("Imgs/FundoSite.png");
     font-family: Arial, sans-serif;
     
 }
@@ -90,7 +90,7 @@ body {
 /*adicionado um efeito quando houver o efeito de "hover" do cursor*/
 .janela-texto:hover {
 
-    /* corzinha clara para ficar bala*/
+    /* corzinha mais clara para ficar bala*/
     background-color: rgba(255, 255, 255, 0.2);
 
     /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
@@ -142,5 +142,4 @@ body {
     border-color: rgba(79, 172, 254, 0.8);
     box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
     transform: scale(1.05); /* multiplicando o tamanho do item com a classe em +5% */
-
 }
