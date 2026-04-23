@@ -143,3 +143,7 @@ body {
     box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
     transform: scale(1.05); /* multiplicando o tamanho do item com a classe em +5% */
 }
+
+.login-button:active {
+    transform: scale(1.05);
+}
