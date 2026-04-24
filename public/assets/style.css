@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Oxanium;
+    src: url(fonts/Oxanium/static/Oxanium-Medium.ttf);
+}
 /*resets basicos para o site ficar sem as bordinhas ali nos cantos*/
 body {
     margin: 0;
@@ -7,8 +11,7 @@ body {
 
 .fundo {
     background-image: url("Imgs/FundoSite.png");
-    font-family: Arial, sans-serif;
-    
+    font-family: Oxanium;
 }
 
 .cabecalho {
@@ -79,9 +82,11 @@ body {
     /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
     backdrop-filter: blur(1px);
     border-radius: 20px;
-    min-height: 20px;
-    width: 300px;
+    min-height: 15px;
+    width: 250px;
     overflow: hidden;
+
+    max-width: 50%; 
 
     transition: all 0.5s ease-out;
 
@@ -96,7 +101,8 @@ body {
     /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
     backdrop-filter: blur(5px);
     height: fit-content;
-    width: 50%; 
+    width: fit-content; 
+    font-size: large;
 }
 
 .conteudo {
