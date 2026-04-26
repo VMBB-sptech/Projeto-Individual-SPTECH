@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conta</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body class="fundo">
     <!-- Header para facilitar a navegação -->
     <header class="cabecalho">
@@ -13,7 +15,7 @@
         <!-- Logo posicionada, oia que coisa linda -->
         <a href="index.html">
             <!-- linkando a imagem com o site principal -->
-             <img src="assets/Imgs/LogoSite.png" alt="Logo sound space" class="logo">
+            <img src="assets/Imgs/LogoSite.png" alt="Logo sound space" class="logo">
         </a>
 
         <!-- Futuras Href vão ficar aqui -->
@@ -23,19 +25,91 @@
             <a href="LeaderBoard.html" class="destaque-colorido navPadding">Leaderboard's</a>
             <a class="login-button destaque-colorido" href="Conta.html">Conta</a>
         </nav>
-    
+
     </header>
 
     <!-- Titulo da parada, pra ficar lindo -->
-     <div class="titulo semi-conteudo">
-        <h1 class="destaque-colorido">Ainda não tem uma conta?</h1>
+    <div class="titulo semi-conteudo">
+        <h1 class="destaque-colorido" id="titulo_conta">Acesse sua conta</h1>
     </div>
 
-    <!-- Div para texto principal -->
-    <div class="janela-texto semi-conteudo" onclick="alert('Ronaldo')">
-        login : email + senha
-        Cadastro: nome, email, senha, confirmar senha
-        Opcional: captcha -> função de wait de 1,5 segundos com um gif de "verificação" após apertar o botão de cadastro
+    <!-- Div para formulários -->
+    <div class="janela-form" style="text-align: center;">
+
+        <!-- LOGIN -->
+        <div id="div_login" style="display: block; width: 100%;">
+            <br>
+
+            <input class="input-padrao" type="text" id="input_email_login" placeholder="email"> <br><br>
+
+            <input class="input-padrao" type="password" id="input_senha_login" placeholder="senha"> <br>
+
+            <div style="display: flex; justify-content: space-between;margin-top: 10px; width: 80%; margin-left: auto; margin-right: auto; color: white;">
+
+                <label style="display: flex; align-items: center; gap: 5px;">
+                    <input type="checkbox" id="checkbox_lembrar" style="font-size: 10px;"> manter logado
+                </label>
+
+                <!-- Vai fazer nada, ou vai? deixa quieto, vai fazer nada não -->
+                <a href="#" class="destaque-colorido fonte-padrao">esqueci a senha</a>
+            </div>
+
+            <br>
+
+            <button class="login-button destaque-colorido largura-botao" onclick="alert('Logando...')">Logar</button>
+
+            <br><br>
+
+            <span class="fonte-padrao" style="color: white;">ainda não tem conta?
+                <a href="#" class="destaque-colorido" onclick="mudarParaCadastro()">cadastre-se</a>
+            </span>
+
+            <br><br>
+        </div>
+
+        <!-- CADASTRO -->
+        <div id="div_cadastro" style="display: none; width: 100%;">
+            <br>
+            <input class="input-padrao" type="text" id="input_nome_cadastro" placeholder="nome"> <br><br>
+            <input class="input-padrao" type="text" id="input_email_cadastro" placeholder="email"> <br><br>
+            <input class="input-padrao" type="password" id="input_senha_cadastro" placeholder="senha"> <br><br>
+            <input class="input-padrao" type="password" id="input_senha_cadastro_confirmar" placeholder="confirme sua senha"> <br>
+
+            <br>
+
+            <button class="login-button destaque-colorido largura-botao" onclick="alert('Cadastrando...')">Cadastrar</button>
+
+            <br><br>
+
+            <span class="fonte-padrao" style="color: white;">já tem uma conta?
+                <a href="#" class="destaque-colorido" onclick="mudarParaLogin()">faça login</a>
+            </span>
+
+            <br><br>
+        </div>
     </div>
 </body>
+
+<script>
+    function mudarParaCadastro() {
+        var divLogin = document.getElementById("div_login");
+        var divCadastro = document.getElementById("div_cadastro");
+        var titulo = document.getElementById("titulo_conta");
+
+        divLogin.style.display = "none";
+        divCadastro.style.display = "block";
+        titulo.innerHTML = "Crie sua conta";
+    }
+
+    function mudarParaLogin() {
+        var divLogin = document.getElementById("div_login");
+        var divCadastro = document.getElementById("div_cadastro");
+        var titulo = document.getElementById("titulo_conta");
+
+        divLogin.style.display = "block";
+        divCadastro.style.display = "none";
+        titulo.innerHTML = "Acesse sua conta";
+    }
+</script>
+
 </html>

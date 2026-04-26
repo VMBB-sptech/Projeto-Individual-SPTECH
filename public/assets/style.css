@@ -15,6 +15,10 @@ h4 {
     display: block;     
 }
 
+.fonte-padrao {
+    font-size: large;
+}
+
 .fundo {
     background-image: url("Imgs/FundoSite.png");
     font-family: Oxanium;
@@ -157,10 +161,62 @@ h4 {
 .login-button:hover {
     background-color: rgba(191, 92, 224, 0.8);
     border-color: rgba(79, 172, 254, 0.8);
-    box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
     transform: scale(1.05); /* multiplicando o tamanho do item com a classe em +5% */
 }
 
 .login-button:active {
     transform: scale(1.05);
+}
+
+.janela-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    width: 500px;
+    max-width: 90%;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+}
+
+.janela-form:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    transform: scale(1.15);
+}
+
+.input-padrao {
+    color: white;
+    font-family: Oxanium;
+    font-size: 16px;
+
+    width: 80%;
+    padding: 10px;
+    border: 2px solid rgba(191, 92, 224, 0.6);
+    border-radius: 10px;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.input-padrao:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transform: scale(1.05);
+}
+
+.input-padrao::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input-padrao:focus {
+    border-color: rgba(79, 172, 254, 0.8);
+}
+
+.largura-botao {
+    width: 80%;
+    margin: 0 auto;
 }
