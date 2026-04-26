@@ -2,6 +2,7 @@
     font-family: Oxanium;
     src: url(fonts/Oxanium/static/Oxanium-Medium.ttf);
 }
+
 /*resets basicos para o site ficar sem as bordinhas ali nos cantos*/
 body {
     margin: 0;
@@ -11,8 +12,8 @@ body {
 
 h4 {
     text-align: center;
-    width: 100%;        
-    display: block;     
+    width: 100%;
+    display: block;
 }
 
 .fonte-padrao {
@@ -32,9 +33,9 @@ h4 {
 .cabecalho {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     padding: 15px 40px;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -69,7 +70,7 @@ h4 {
 .destaque-colorido {
     /* criando um degrade "de fundo" */
     background-image: linear-gradient(90deg, #4facfe 0%, #bf5ce0 60%, #ff5e98 100%);
-    
+
     /*recortando o fundo, deixando apenas o texto desse retangulo desenhado pelo background image*/
     -webkit-background-clip: text;
     background-clip: text;
@@ -78,8 +79,8 @@ h4 {
     color: transparent;
 
     /*deixando a fonte mais grossa para ser mais visivel*/
-    font-weight: 1000; 
-    
+    font-weight: 1000;
+
     /*removendo qualquer decoração como por exemplo o azul de um hiperlink*/
     text-decoration: none;
 
@@ -101,7 +102,7 @@ h4 {
     width: 250px;
     overflow: hidden;
 
-    max-width: 50%; 
+    max-width: 50%;
 
     transition: all 0.5s ease-out;
 
@@ -116,7 +117,7 @@ h4 {
     /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
     backdrop-filter: blur(5px);
     height: fit-content;
-    width: fit-content; 
+    width: fit-content;
     font-size: large;
 }
 
@@ -125,9 +126,11 @@ h4 {
     justify-content: space-between;
     flex-direction: column;
     max-height: 0;
-    opacity: 0;         /* deixando invisivel para esconder o texto */
-    overflow: hidden;   /* Escondendo o que sobrar*/
-    transition: all 0.5s ease 0.3s; 
+    opacity: 0;
+    /* deixando invisivel para esconder o texto */
+    overflow: hidden;
+    /* Escondendo o que sobrar*/
+    transition: all 0.5s ease 0.3s;
     gap: 20px;
 }
 
@@ -135,7 +138,7 @@ h4 {
     align-self: center;
 }
 
-.janela-texto:hover .conteudo{
+.janela-texto:hover .conteudo {
     opacity: 1;
     margin-top: 15px;
     max-height: fit-content;
@@ -151,17 +154,18 @@ h4 {
     border: 2px solid rgba(191, 92, 224, 0.6);
     border-radius: 25px;
     padding: 10px 25px;
-    
+
     font-size: 15px;
     font-weight: bold;
     /* propriedade a ser alterada | duração até alterar | sentido da alteração EX: indo ou voltando | atraso */
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
 .login-button:hover {
     background-color: rgba(191, 92, 224, 0.8);
     border-color: rgba(79, 172, 254, 0.8);
-    transform: scale(1.05); /* multiplicando o tamanho do item com a classe em +5% */
+    transform: scale(1.05);
+    /* multiplicando o tamanho do item com a classe em +5% */
 }
 
 .login-button:active {
