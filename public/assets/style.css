@@ -9,8 +9,19 @@ body {
     box-sizing: border-box;
 }
 
+h4 {
+    text-align: center;
+    width: 100%;        
+    display: block;     
+}
+
 .fundo {
     background-image: url("Imgs/FundoSite.png");
+    font-family: Oxanium;
+}
+
+.fundo2 {
+    background-image: url("Imgs/Background\ Image.gif");
     font-family: Oxanium;
 }
 
