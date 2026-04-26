@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conta</title>
     <link rel="stylesheet" href="assets/style.css">
+    <script src="Validacoes.js"></script>
 </head>
 
 <body class="fundo">
@@ -51,12 +52,16 @@
                 </label>
 
                 <!-- Vai fazer nada, ou vai? deixa quieto, vai fazer nada não -->
-                <a href="#" class="destaque-colorido fonte-padrao">esqueci a senha</a>
+                <a href="EsqueciASenha.html" class="destaque-colorido fonte-padrao">esqueci a senha</a>
             </div>
 
             <br>
 
-            <button class="login-button destaque-colorido largura-botao" onclick="alert('Logando...')">Logar</button>
+            <div id="div_mensagem" class="login-button largura-botao">
+
+            </div>
+
+            <button class="login-button destaque-colorido largura-botao" onclick="loginUsuario()">Logar</button>
 
             <br><br>
 
@@ -77,7 +82,7 @@
 
             <br>
 
-            <button class="login-button destaque-colorido largura-botao" onclick="alert('Cadastrando...')">Cadastrar</button>
+            <button class="login-button destaque-colorido largura-botao" onclick="cadastrarUsuario()">Cadastrar</button>
 
             <br><br>
 
@@ -89,27 +94,5 @@
         </div>
     </div>
 </body>
-
-<script>
-    function mudarParaCadastro() {
-        var divLogin = document.getElementById("div_login");
-        var divCadastro = document.getElementById("div_cadastro");
-        var titulo = document.getElementById("titulo_conta");
-
-        divLogin.style.display = "none";
-        divCadastro.style.display = "block";
-        titulo.innerHTML = "Crie sua conta";
-    }
-
-    function mudarParaLogin() {
-        var divLogin = document.getElementById("div_login");
-        var divCadastro = document.getElementById("div_cadastro");
-        var titulo = document.getElementById("titulo_conta");
-
-        divLogin.style.display = "block";
-        divCadastro.style.display = "none";
-        titulo.innerHTML = "Acesse sua conta";
-    }
-</script>
 
 </html>

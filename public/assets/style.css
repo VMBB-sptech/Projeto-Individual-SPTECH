@@ -220,3 +220,7 @@ h4 {
     width: 80%;
     margin: 0 auto;
 }
+
+#div_mensagem {
+    display: none;
+}
