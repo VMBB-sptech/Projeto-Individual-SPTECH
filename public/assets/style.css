@@ -162,7 +162,6 @@ h4 {
 }
 
 .login-button:hover {
-    background-color: rgba(191, 92, 224, 0.8);
     border-color: rgba(79, 172, 254, 0.8);
     transform: scale(1.05);
     /* multiplicando o tamanho do item com a classe em +5% */

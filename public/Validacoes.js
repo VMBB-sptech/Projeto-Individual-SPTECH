@@ -46,7 +46,7 @@ function VerificarCadastro() {
     }
 
     // Lógica de verificação
-    for (let i = 0; i < senha.length; i++) {
+    for (let i = 0; i < senha.length && !temNumero && !temEspecial; i++) {
         let letra = senha[i];
 
         for (let j = 0; j < listaNumeros.length && !temNumero; j++) {
@@ -62,10 +62,21 @@ function VerificarCadastro() {
         }
     }
 
-    if (temNumero) pontos++;
-    if (temEspecial) pontos++;
-    if (senha.length >= 8) pontos++;
-    if (senha != senha.toLowerCase()) pontos++;
+    if (temNumero) {
+        pontos++;
+    }
+    if (temEspecial) {
+        pontos++;
+    }
+    if (senha.length >= 8) {
+        pontos++;
+    }
+    if (senha != senha.toLowerCase()) {
+        pontos++;
+    }
+    if (senha != senha.toUpperCase()) {
+        pontos++;
+    }
 
     // Mostrando o feedback
     div_feedback_senha.style.display = "block";
@@ -117,7 +128,9 @@ function cadastrarUsuario() {
         return;
     }
 
-    // Validação de segurança
+    // --- LOGICA DE SEGURANÇA NO CADASTRO ---
+
+    // Verificando cada letra
     for (let i = 0; i < senha.length; i++) {
         let letra = senha[i];
 
@@ -134,30 +147,49 @@ function cadastrarUsuario() {
         }
     }
 
+    // Somando pontos
     if (temNumero) {
         pontos++;
     }
-
     if (temEspecial) {
         pontos++;
     }
-
     if (senha.length >= 8) {
         pontos++;
     }
-
     if (senha != senha.toLowerCase()) {
         pontos++;
     }
+    if (senha != senha.toUpperCase()) {
+        pontos++;
+    }
 
-    // Mostrando o retorno da senha na div de mensagens principal
+    // Montando o aviso do que falta
+    let oQueFalta = "";
+    if (!temNumero) {
+        oQueFalta += "<br>- Um número";
+    }
+    if (!temEspecial) {
+        oQueFalta += "<br>- Um caractere especial";
+    }
+    if (senha.length < 8) {
+        oQueFalta += "<br>- Mínimo de 8 caracteres";
+    }
+    if (senha == senha.toLowerCase()) {
+        oQueFalta += "<br>- Uma letra maiúscula";
+    }
+    if (senha == senha.toUpperCase()) {
+        oQueFalta += "<br>- Uma letra minúscula";
+    }
+
+    // Mostrando o retorno na div de mensagens
     div_mensagem_cadastro.style.display = "flex";
 
-    if (pontos <= 1) {
-        div_mensagem_cadastro.innerHTML = `<b style="color: red;">Senha Insegura</b>`;
+    if (pontos <= 2) {
+        div_mensagem_cadastro.innerHTML = `<b style="color: red;">Senha Insegura! ${oQueFalta}</b>`;
         return;
-    } else if (pontos <= 3) {
-        div_mensagem_cadastro.innerHTML = `<b style="color: yellow;">Senha Fraca</b>`;
+    } else if (pontos <= 4) {
+        div_mensagem_cadastro.innerHTML = `<b style="color: yellow;">Senha Fraca! ${oQueFalta}</b>`;
         return;
     } else {
         div_mensagem_cadastro.innerHTML = `<b style="color: green;">Senha Segura!</b>`;
