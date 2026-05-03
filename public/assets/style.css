@@ -121,6 +121,15 @@ h4 {
     font-size: large;
 }
 
+/* Anulando o hover quando a caixa estiver expandida usando a força da Cascata do CSS */
+.janela-texto.expandida:hover {
+    background-color: rgba(0, 0, 0, 0.25); /* Cor original da janela */
+    backdrop-filter: blur(1px); /* Blur original da janela */
+    height: 350px; /* Mantém a altura expandida */
+    width: 600px; /* Mantém a largura expandida */
+    font-size: 24px; /* Mantém a fonte grande */
+}
+
 .conteudo {
     display: flex;
     justify-content: space-between;
@@ -226,4 +235,46 @@ h4 {
 
 #div_mensagem {
     display: none;
+}
+
+.botao-dificuldade {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(191, 92, 224, 0.6);
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-dificuldade:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(79, 172, 254, 0.8);
+    transform: scale(1.1); /* Faz o botão crescer suavemente */
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.5); /* Adiciona um brilho legal */
+}
+
+/* Alterando as cores de brilho de acordo com a dificuldade */
+.botao-dificuldade.normal:hover {
+    border-color: rgba(46, 204, 113, 0.8); /* Verde Esmeralda */
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+}
+
+.botao-dificuldade.dificil:hover {
+    border-color: rgba(241, 196, 15, 0.8); /* Amarelo Ouro */
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+}
+
+.botao-dificuldade.especialista:hover {
+    border-color: rgba(231, 76, 60, 0.8); /* Vermelho Intenso */
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
+}
+
+.expandida {
+    height: 350px;
+    max-width: 80%;
+    width: 600px;
+    justify-content: center;
+    font-size: 24px;
+    cursor: default;
 }
