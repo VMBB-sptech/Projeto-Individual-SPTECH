@@ -10,83 +10,69 @@
 </head>
 
 <body class="fundo2">
-    <!-- Header para facilitar a navegação -->
     <header class="cabecalho">
-
-        <!-- Logo posicionada, oia que coisa linda -->
         <a href="index.html">
-            <!-- linkando a imagem com o site principal -->
             <img src="assets/Imgs/LogoSite.png" alt="Logo sound space" class="logo">
         </a>
-
-        <!-- Futuras Href vão ficar aqui -->
         <nav class="menu">
-            <a href="Quiz.html" class="destaque-colorido navPadding">Quiz</a>
+            <a href="index.html" class="destaque-colorido navPadding">Home</a>
             <a href="AboutMe.html" class="destaque-colorido navPadding">Sobre Mim</a>
-            <a href="LeaderBoard.html" class="destaque-colorido navPadding">Leaderboard's</a>
             <a class="login-button destaque-colorido" href="Conta.html">Conta</a>
         </nav>
 
     </header>
 
-    <!-- Titulo da parada, pra ficar lindo -->
     <div class="titulo semi-conteudo">
         <h1 class="destaque-colorido">Quiz</h1>
     </div>
 
-    <!-- Div para texto principal -->
     <div class="janela-texto semi-conteudo" onclick="exibirCaixa()" id="botao" style="text-align: center;">
         Começar!
     </div>
+    <div class="janela-texto semi-conteudo jogo-container" id="containerDoJogo"
+        style="display: none; flex-direction: column; text-align: center; gap: 20px;">
 
-    <!-- Tela do Jogo (Escondida no início) -->
-    <div class="janela-texto semi-conteudo" id="containerDoJogo" style="display: none; flex-direction: column; text-align: center; gap: 20px;">
-        
-        <!-- Pontuação em tempo real -->
         <div id="pontuacaoDuranteJogo" style="display: flex; justify-content: space-around; font-weight: bold;">
             <span style="color: #4CAF50;">Acertos: <span id="spanCertas">0</span></span>
             <span style="color: #f44336;">Erros: <span id="spanErradas">0</span></span>
         </div>
-
-        <!-- Qual questão estamos -->
         <div>
             <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
         </div>
 
-        <!-- A Pergunta em si -->
         <div>
             <h3 id="spanQuestaoExibida" style="margin: 0;"></h3>
         </div>
 
-        <!-- As 4 Alternativas -->
-        <div id="opcoes" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 10px; margin: 0 auto;">
-            <span>
-                <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" />
-                <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+        <div id="opcoes" style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+            <span style="width: 100%;">
+                <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" class="radio-escondido" />
+                <label for="primeiraOpcao" id="labelOpcaoUm" class="opcao-botao"></label>
             </span>
-            <span>
-                <input type="radio" id="segundaOpcao" name="option" value="alternativaB" />
-                <label for="segundaOpcao" id="labelOpcaoDois"></label>
+            <span style="width: 100%;">
+                <input type="radio" id="segundaOpcao" name="option" value="alternativaB" class="radio-escondido" />
+                <label for="segundaOpcao" id="labelOpcaoDois" class="opcao-botao"></label>
             </span>
-            <span>
-                <input type="radio" id="terceiraOpcao" name="option" value="alternativaC" />
-                <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+            <span style="width: 100%;">
+                <input type="radio" id="terceiraOpcao" name="option" value="alternativaC" class="radio-escondido" />
+                <label for="terceiraOpcao" id="labelOpcaoTres" class="opcao-botao"></label>
             </span>
-            <span>
-                <input type="radio" id="quartaOpcao" name="option" value="alternativaD" />
-                <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+            <span style="width: 100%;">
+                <input type="radio" id="quartaOpcao" name="option" value="alternativaD" class="radio-escondido" />
+                <label for="quartaOpcao" id="labelOpcaoQuatro" class="opcao-botao"></label>
             </span>
         </div>
 
-        <!-- Botões de Ação -->
         <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
-            <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade">Responder</button>
-            <button onclick="avancar()" id="btnProx" class="botao-dificuldade" disabled style="display: none;">Avançar</button>
+            <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade"
+                style="color: white;">Responder</button>
+            <button onclick="avancar()" id="btnProx" class="botao-dificuldade" disabled
+                style="display: none; color: white;">Avançar</button>
         </div>
     </div>
 
-    <!-- Tela de Resultado Final (Escondida no início) -->
-    <div class="janela-texto semi-conteudo" id="containerFinal" style="display: none; flex-direction: column; text-align: center; gap: 20px;">
+    <div class="janela-texto semi-conteudo jogo-container" id="containerFinal"
+        style="display: none; flex-direction: column; text-align: center; gap: 20px;">
         <h2 class="destaque-colorido" style="margin: 0;">Fim do Quiz!</h2>
         <h3 style="margin: 0;">Pontuação Final: <span id="spanPontuacaoFinal"></span></h3>
         <p id="msgFinal" style="font-weight: bold;"></p>

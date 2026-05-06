@@ -247,18 +247,17 @@ const listaDeQuestoesVeryHard = [
     }
 ];
 
-// Variáveis Globais do Jogo
 let numeroDaQuestaoAtual = 0;
 let pontuacaoFinal = 0;
 let certas = 0;
 let erradas = 0;
 let quantidadeDeQuestoes = 0;
 let listaSelecionada = [];
+let playerPointsQuiz = 0;
+let multiplicadorPP = 0;
 
 function exibirCaixa() {
-    // Adiciona a classe 'expandida' que criaremos no CSS para crescer a div
     botao.classList.add('expandida');
-    // Altera o texto para 'TEXTO' centralizado
     botao.innerHTML = `
         <span style="margin-bottom: 30px; font-weight: bold;">Escolha a dificuldade:</span>
         <div style="display: flex; justify-content: space-evenly; width: 100%;">
@@ -267,31 +266,28 @@ function exibirCaixa() {
             <div class="botao-dificuldade especialista" onclick="prepararQuiz('veryHard')">Especialista</div>
         </div>
         `;
-    // Remove a função de clique para que não acione de novo acidentalmente
     botao.onclick = null;
 }
 
 function prepararQuiz(dificuldade) {
-    // Define qual lista será usada com base no botão clicado
     if (dificuldade == 'normal') {
         listaSelecionada = listaDeQuestoesNormal;
+        multiplicadorPP = 1.0;
     } else if (dificuldade == 'hard') {
         listaSelecionada = listaDeQuestoesHard;
+        multiplicadorPP = 2.0;
     } else if (dificuldade == 'veryHard') {
         listaSelecionada = listaDeQuestoesVeryHard;
+        multiplicadorPP = 5.0;
     }
 
-    // Descobre a quantidade de questões da lista escolhida
     quantidadeDeQuestoes = listaSelecionada.length;
 
-    // Esconde o menu de dificuldade e mostra a tela do jogo
     botao.style.display = "none";
     containerDoJogo.style.display = "flex";
 
-    // Exibe a quantidade de questões na tela
     qtdQuestoes.innerHTML = quantidadeDeQuestoes;
 
-    // Chama a função para preencher a primeira questão (posição 0)
     preencherHTMLcomQuestaoAtual(0);
 }
 
@@ -308,10 +304,8 @@ function preencherHTMLcomQuestaoAtual(index) {
     labelOpcaoQuatro.innerHTML = questaoAtual.alternativaD;
 }
 
-// --- FUNÇÕES DE LÓGICA DO JOGO --- //
 
 function habilitarAlternativas(habilitar) {
-    // Se habilitar for true, deixamos clicar (disabled = false). Senão, bloqueamos.
     if (habilitar == true) {
         primeiraOpcao.disabled = false;
         segundaOpcao.disabled = false;
@@ -333,7 +327,6 @@ function desmarcarRadioButtons() {
 }
 
 function limparCoresBackgroundOpcoes() {
-    // Removemos as cores pintadas quando o usuário erra ou acerta
     labelOpcaoUm.style.backgroundColor = "";
     labelOpcaoUm.style.color = "";
     labelOpcaoDois.style.backgroundColor = "";
@@ -347,7 +340,6 @@ function limparCoresBackgroundOpcoes() {
 function submeter() {
     let selecionouAlguma = false;
 
-    // Verifica se alguma bolinha foi marcada
     if (primeiraOpcao.checked) {
         selecionouAlguma = true;
     } else if (segundaOpcao.checked) {
@@ -361,15 +353,12 @@ function submeter() {
     if (!selecionouAlguma) {
         alert("Escolha uma opção antes de responder!");
     } else {
-        // Troca os botões
         btnSubmeter.style.display = "none";
         btnProx.style.display = "inline-block";
         btnProx.disabled = false;
 
-        // Bloqueia as opções para não mudar a resposta
         habilitarAlternativas(false);
 
-        // Chama a função que vê se acertou ou errou
         checarResposta();
     }
 }
@@ -395,7 +384,6 @@ function checarResposta() {
         labelSelecionada = labelOpcaoQuatro;
     }
 
-    // Descobrindo qual é a label correta para sempre pintar ela de verde
     let labelCorreta = null;
     if (respostaCerta == "alternativaA") {
         labelCorreta = labelOpcaoUm;
@@ -410,29 +398,30 @@ function checarResposta() {
     if (valorSelecionado == respostaCerta) {
         pontuacaoFinal++;
         certas++;
+        playerPointsQuiz += (2 * multiplicadorPP);
         spanCertas.innerHTML = certas;
 
-        labelSelecionada.style.backgroundColor = "#4CAF50"; // Verde
+        labelSelecionada.style.backgroundColor = "#4CAF50";
         labelSelecionada.style.color = "white";
     } else {
-        // Errou!
-        erradas = erradas + 1;
+        erradas ++;
         spanErradas.innerHTML = erradas;
 
-        labelSelecionada.style.backgroundColor = "#f44336"; // Vermelho
+        if(playerPointsQuiz >= 6 ){
+            playerPointsQuiz -= (1.25 * multiplicadorPP);        
+        }
+        
+        labelSelecionada.style.backgroundColor = "#f44336";
         labelSelecionada.style.color = "white";
 
-        // Mas pinta a certa de verde pro cara aprender
         labelCorreta.style.backgroundColor = "#4CAF50";
         labelCorreta.style.color = "white";
     }
 
-    // Aumenta o número para a próxima
     numeroDaQuestaoAtual = numeroDaQuestaoAtual + 1;
 }
 
 function avancar() {
-    // Volta os botões pro estado normal
     btnProx.style.display = "none";
     btnSubmeter.style.display = "inline-block";
 
@@ -440,17 +429,14 @@ function avancar() {
     limparCoresBackgroundOpcoes();
     habilitarAlternativas(true);
 
-    // Se ainda tem questões na lista, preenche a próxima
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
         preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
     } else {
-        // Se não tem, fim de jogo
         finalizarJogo();
     }
 }
 
 function finalizarJogo() {
-    // Esconde o jogo e mostra a tela final
     containerDoJogo.style.display = "none";
     containerFinal.style.display = "flex";
 
@@ -458,24 +444,25 @@ function finalizarJogo() {
     let textoFinal = "";
 
     if (porcentagem < 0.3) {
-        textoFinal = "Você precisa estudar mais sobre jogos rítmicos!";
+        textoFinal = "Você precisa revisar o conteudo sobre jogos rítmicos!";
         msgFinal.style.color = "#f44336";
     } else if (porcentagem >= 0.3 && porcentagem < 0.8) {
-        textoFinal = "Foi um bom resultado, mas você pode melhorar!";
-        msgFinal.style.color = "#ff9800"; // Laranja
-    } else if (porcentagem >= 0.8) {
+        textoFinal = "Foi um bom resultado!";
+        msgFinal.style.color = "#d9f506";
+    } else if (porcentagem >= 0.9) {
         textoFinal = "Incrível! Você é um mestre dos jogos rítmicos!";
         msgFinal.style.color = "#4CAF50";
+    } else if (porcentagem >= 0.8) {
+        textoFinal = "Fantastico! Você Dominou os conceitos de jogos ritmicos!";
+        msgFinal.style.color = "#118bf0";
     }
 
-    // Usando concatenação simples
     textoFinal = textoFinal + "<br>Você acertou " + Math.round(porcentagem * 100) + "% do Quiz.";
-
+ 
     msgFinal.innerHTML = textoFinal;
     spanPontuacaoFinal.innerHTML = pontuacaoFinal;
 }
 
 function tentarNovamente() {
-    // Recarrega a página para jogar de novo
     window.location.reload();
 }

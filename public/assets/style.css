@@ -2,8 +2,6 @@
     font-family: Oxanium;
     src: url(fonts/Oxanium/static/Oxanium-Medium.ttf);
 }
-
-/*resets basicos para o site ficar sem as bordinhas ali nos cantos*/
 body {
     margin: 0;
     padding: 0;
@@ -35,7 +33,12 @@ h4 {
     align-items: center;
     justify-content: space-between;
     padding: 15px 40px;
+    width: 96%;
+    height: 100px;
     background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 100;
+    font-size: 20px;
 }
 
 .logo {
@@ -48,7 +51,6 @@ h4 {
     color: white;
 }
 
-/*classe para centralizar os titulos e dar o efeito de corzinha*/
 .titulo {
     text-align: center;
 }
@@ -108,13 +110,9 @@ h4 {
 
 }
 
-/*adicionado um efeito quando houver o efeito de "hover" do cursor*/
 .janela-texto:hover {
 
-    /* corzinha mais clara para ficar bala*/
     background-color: rgba(255, 255, 255, 0.2);
-
-    /* deixando o blur mais forte para que seja mais visivel o "borrão"*/
     backdrop-filter: blur(5px);
     height: fit-content;
     width: fit-content;
@@ -123,11 +121,11 @@ h4 {
 
 /* Anulando o hover quando a caixa estiver expandida usando a força da Cascata do CSS */
 .janela-texto.expandida:hover {
-    background-color: rgba(0, 0, 0, 0.25); /* Cor original da janela */
-    backdrop-filter: blur(1px); /* Blur original da janela */
-    height: 350px; /* Mantém a altura expandida */
-    width: 600px; /* Mantém a largura expandida */
-    font-size: 24px; /* Mantém a fonte grande */
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(1px);
+    height: 350px;
+    width: 600px; 
+    font-size: 24px; 
 }
 
 .conteudo {
@@ -136,9 +134,7 @@ h4 {
     flex-direction: column;
     max-height: 0;
     opacity: 0;
-    /* deixando invisivel para esconder o texto */
-    overflow: hidden;
-    /* Escondendo o que sobrar*/
+    overflow: hidden;/* esconde o que sobrar*/
     transition: all 0.5s ease 0.3s;
     gap: 20px;
 }
@@ -164,7 +160,7 @@ h4 {
     border-radius: 25px;
     padding: 10px 25px;
 
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     /* propriedade a ser alterada | duração até alterar | sentido da alteração EX: indo ou voltando | atraso */
     transition: all 0.3s ease;
@@ -250,23 +246,23 @@ h4 {
 .botao-dificuldade:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(79, 172, 254, 0.8);
-    transform: scale(1.1); /* Faz o botão crescer suavemente */
-    box-shadow: 0 0 15px rgba(79, 172, 254, 0.5); /* Adiciona um brilho legal */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
 }
 
 /* Alterando as cores de brilho de acordo com a dificuldade */
 .botao-dificuldade.normal:hover {
-    border-color: rgba(46, 204, 113, 0.8); /* Verde Esmeralda */
+    border-color: rgba(46, 204, 113, 0.8);
     box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
 }
 
 .botao-dificuldade.dificil:hover {
-    border-color: rgba(241, 196, 15, 0.8); /* Amarelo Ouro */
+    border-color: rgba(241, 196, 15, 0.8);
     box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
 }
 
 .botao-dificuldade.especialista:hover {
-    border-color: rgba(231, 76, 60, 0.8); /* Vermelho Intenso */
+    border-color: rgba(231, 76, 60, 0.8);
     box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
 }
 
