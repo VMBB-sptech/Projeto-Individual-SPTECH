@@ -2,6 +2,7 @@
     font-family: Oxanium;
     src: url(fonts/Oxanium/static/Oxanium-Medium.ttf);
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -39,6 +40,19 @@ h4 {
     position: fixed;
     z-index: 100;
     font-size: 20px;
+}
+
+.cabecalho2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    width: 96%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -119,13 +133,12 @@ h4 {
     font-size: large;
 }
 
-/* Anulando o hover quando a caixa estiver expandida usando a força da Cascata do CSS */
 .janela-texto.expandida:hover {
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(1px);
     height: 350px;
-    width: 600px; 
-    font-size: 24px; 
+    width: 600px;
+    font-size: 24px;
 }
 
 .conteudo {
@@ -134,7 +147,8 @@ h4 {
     flex-direction: column;
     max-height: 0;
     opacity: 0;
-    overflow: hidden;/* esconde o que sobrar*/
+    overflow: hidden;
+    /* esconde o que sobrar*/
     transition: all 0.5s ease 0.3s;
     gap: 20px;
 }
@@ -250,7 +264,6 @@ h4 {
     box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
 }
 
-/* Alterando as cores de brilho de acordo com a dificuldade */
 .botao-dificuldade.normal:hover {
     border-color: rgba(46, 204, 113, 0.8);
     box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
@@ -273,4 +286,63 @@ h4 {
     justify-content: center;
     font-size: 24px;
     cursor: default;
+}
+
+.layout-principal {
+    display: flex;
+    margin-top: 130px;
+    min-height: calc(100vh - 130px);
+}
+
+.barra-lateral {
+    width: 225px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    border-right: 2px solid rgba(191, 92, 224, 0.4);
+}
+
+.barra-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+    width: 225px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    border-right: 2px solid rgba(191, 92, 224, 0.4);
+}
+
+.conteudo-principal {
+    margin-left: 225px;
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link-lateral {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.link-lateral:hover {
+    transition: all 0.5s;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transform: scale(1.05);
 }
