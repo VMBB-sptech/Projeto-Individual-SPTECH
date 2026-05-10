@@ -31,13 +31,32 @@
             <a href="Leaderboard.html" class="destaque-colorido link-lateral">Leaderboard</a>
         </nav>
 
-        <div class="conteudo-principal" style="align-items: center; display: flex; flex-direction: column;">
+        <div class="conteudo-principal" >
 
             <div class="titulo semi-conteudo">
                 <h1 class="destaque-colorido">LeaderBoard's</h1>
             </div>
 
-            <div class="janela-texto conteudo">
+            <div class="filtros-ranking">
+                <button id="filtro_playerPoints" class="filtro-btn ativo"></button>
+                <button id="filtro_acertos" class="filtro-btn"></button>
+                <button id="filtro_erros" class="filtro-btn"></button>
+            </div>
+            
+            <div class="ranking-painel">
+                <div class="tabela-ranking">
+                    <div class="ranking-header">
+                        <div class="col">#</div>
+                        <div class="col">Jogador</div>
+                        <div class="col">Dificuldade</div>
+                        <div class="col">Acertos</div>
+                        <div class="col">Erros</div>
+                        <div class="col">PP</div>
+                    </div>
+
+                    <!-- FAZER INSERIR AS LINHAS QND LIGAR COM O WEB-DAT-WIZ -->
+                    <div id="corpo_ranking" class="ranking-body"> </div>
+                </div>
             </div>
 
         </div>
