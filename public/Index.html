@@ -25,7 +25,7 @@
     <div class="titulo semi-conteudo">
         <h1 class="destaque-colorido">Jogos rítmicos digitais</h1>
     </div>
-    <div class="janela-texto semi-conteudo" style="text-align: center;">
+    <div class="janela-texto semi-conteudo" style="text-align: center;" onclick="alternarCard(this)">
         Historia
         <span class="conteudo">
             <div style="display: flex; text-align: left; text-align: justify;">
@@ -137,7 +137,7 @@
 
     <br>
 
-    <div class="janela-texto semi-conteudo" style="text-align: center;">
+    <div class="janela-texto semi-conteudo" style="text-align: center;" onclick="alternarCard(this)">
         Impacto Musical
         <span class="conteudo">
             <div style="display: flex; text-align: left; text-align: justify;">
@@ -216,7 +216,7 @@
 
     <br>
 
-    <div class="janela-texto semi-conteudo" style="text-align: center;">
+    <div class="janela-texto semi-conteudo" style="text-align: center;" onclick="alternarCard(this)">
         Como jogar
         <span class="conteudo">
             <div style="display: flex; text-align: left; text-align: justify;">
@@ -311,7 +311,7 @@
 
     <br>
 
-    <div class="janela-texto semi-conteudo" style="text-align: center;">
+    <div class="janela-texto semi-conteudo" style="text-align: center;" onclick="alternarCard(this)">
         Principais Artistas
         <span class="conteudo">
             <div style="display: flex; text-align: left; text-align: justify;">
@@ -410,7 +410,7 @@
 
     <br>
 
-    <div class="janela-texto semi-conteudo" style="text-align: center;">
+    <div class="janela-texto semi-conteudo" style="text-align: center;" onclick="alternarCard(this)">
         Cenário Competitivo & Comunidade
         <span class="conteudo">
             <div style="display: flex; text-align: left; text-align: justify;">
@@ -490,7 +490,7 @@
 
     <br>
 
-    <a href="Quiz.html" style="text-decoration: none;">
+    <a href="Conta.html" style="text-decoration: none;">
         <div class="janela-texto semi-conteudo" style="text-align: center;">
             Teste seus conhecimentos no Quiz!
             <span class="conteudo">
@@ -503,4 +503,11 @@
 </html>
 
 <script>
+    function alternarCard(div) {
+        if (div.classList.contains("expandida")) {
+            div.classList.remove("expandida");
+        } else {
+            div.classList.add("expandida");
+        }
+    }
 </script>

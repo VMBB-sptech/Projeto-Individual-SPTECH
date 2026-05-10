@@ -68,6 +68,8 @@ h4 {
     color: white;
 }
 
+
+
 .titulo {
     text-align: center;
 }
@@ -115,7 +117,7 @@ h4 {
     background-color: rgba(0, 0, 0, 0.25);
 
     /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
     border-radius: 20px;
     min-height: 15px;
     width: 250px;
@@ -128,20 +130,9 @@ h4 {
 }
 
 .janela-texto:hover {
-
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    height: fit-content;
-    width: fit-content;
-    font-size: large;
-}
-
-.janela-texto.expandida:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(1px);
-    height: 350px;
-    width: 600px;
-    font-size: 24px;
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.125);
+    backdrop-filter: blur(5px); 
 }
 
 .conteudo {
@@ -160,7 +151,22 @@ h4 {
     align-self: center;
 }
 
-.janela-texto:hover .conteudo {
+.janela-texto.expandida {
+    font-size: 20px;
+    width: fit-content;
+    max-width: 62.5%;
+    height: fit-content;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    cursor: default;
+}
+
+.janela-texto.expandida:hover {
+    transform: scale(1.0125);
+}
+
+.janela-texto.expandida .conteudo {
     opacity: 1;
     margin-top: 15px;
     max-height: fit-content;
@@ -282,14 +288,7 @@ h4 {
     box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
 }
 
-.expandida {
-    height: 350px;
-    max-width: 80%;
-    width: 600px;
-    justify-content: center;
-    font-size: 24px;
-    cursor: default;
-}
+
 
 .layout-principal {
     display: flex;
