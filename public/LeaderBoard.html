@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <link rel="stylesheet" href="assets/style.css">
+    <script src="Leaderboard.js"></script>
 </head>
 
 <body class="fundo">
@@ -38,20 +39,20 @@
             </div>
 
             <div class="filtros-ranking">
-                <button id="filtro_playerPoints" class="filtro-btn ativo"></button>
-                <button id="filtro_acertos" class="filtro-btn"></button>
-                <button id="filtro_erros" class="filtro-btn"></button>
+                <button id="filtro_playerPoints" class="filtro-button ativo" onclick="filtrar('playerPoints')"> Player Points</button>
+                <button id="filtro_acertos" class="filtro-button" onclick="filtrar('acertos')"> Acertos </button>
+                <button id="filtro_erros" class="filtro-button" onclick="filtrar('erros')"> Erros </button>
             </div>
             
             <div class="ranking-painel">
                 <div class="tabela-ranking">
                     <div class="ranking-header">
-                        <div class="col">#</div>
+                        <div class="col">Ranking</div>
                         <div class="col">Jogador</div>
                         <div class="col">Dificuldade</div>
                         <div class="col">Acertos</div>
                         <div class="col">Erros</div>
-                        <div class="col">PP</div>
+                        <div class="col">Player points</div>
                     </div>
 
                     <!-- FAZER INSERIR AS LINHAS QND LIGAR COM O WEB-DAT-WIZ -->

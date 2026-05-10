@@ -345,7 +345,7 @@ h4 {
     margin-bottom: 20px;
 }
 
-.filtro-btn {
+.filtro-button {
     font-family: Oxanium;
     font-size: 16px;
     font-weight: bold;
@@ -354,19 +354,18 @@ h4 {
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
     transition: all 0.35s ease;
 }
 
-.filtro-btn:hover {
+.filtro-button:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(79, 172, 254, 0.8);
     color: white;
-    transform: scale(1.08);
+    transform: scale(1.067);
     box-shadow: 0 0 18px rgba(79, 172, 254, 0.35);
 }
 
-.filtro-btn.ativo {
+.filtro-button.ativo {
     background: linear-gradient(135deg, rgba(79, 172, 254, 0.25), rgba(191, 92, 224, 0.25));
     border-color: rgba(79, 172, 254, 1);
     color: white;
