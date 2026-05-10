@@ -229,7 +229,7 @@ function loginUsuario() {
         return;
     }
 
-    window.location.href = "AboutYou.html";
+    window.location.href = "LeaderBoard.html";
 }
 
 // Funções para mostrar/esconder a senha ao passar o cursor

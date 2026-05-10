@@ -6,6 +6,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: 130px;
     box-sizing: border-box;
 }
 
@@ -38,6 +39,8 @@ h4 {
     height: 100px;
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 100;
     font-size: 20px;
 }
@@ -290,31 +293,19 @@ h4 {
 
 .layout-principal {
     display: flex;
-    margin-top: 130px;
     min-height: calc(100vh - 130px);
 }
 
 .barra-lateral {
-    width: 225px;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-    border-right: 2px solid rgba(191, 92, 224, 0.4);
-}
-
-.barra-lateral {
     position: fixed;
-    top: 0;
+    top: 130px;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 130px);
     z-index: 1;
     width: 225px;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -345,4 +336,16 @@ h4 {
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     transform: scale(1.05);
+}
+
+.caixa-Dash {
+    width: 225px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    display: flex;
+    flex-direction: col;
+    justify-content: center;
+    gap: 15px;
+    border-right: 2px solid rgba(191, 92, 224, 0.4);
 }

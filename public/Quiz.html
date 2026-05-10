@@ -22,62 +22,75 @@
 
     </header>
 
-    <div class="titulo semi-conteudo">
-        <h1 class="destaque-colorido">Quiz</h1>
-    </div>
+    <div class="layout-principal">
 
-    <div class="janela-texto semi-conteudo" onclick="exibirCaixa()" id="botao" style="text-align: center;">
-        Começar!
-    </div>
-    <div class="janela-texto semi-conteudo jogo-container" id="containerDoJogo"
-        style="display: none; flex-direction: column; text-align: center; gap: 20px;">
+        <nav class="barra-lateral">
+            <a href="AboutYou.html" class="destaque-colorido link-lateral">Profile</a>
+            <a href="Quiz.html" class="destaque-colorido link-lateral">Quiz</a>
+            <a href="Leaderboard.html" class="destaque-colorido link-lateral">Leaderboard</a>
+        </nav>
 
-        <div id="pontuacaoDuranteJogo" style="display: flex; justify-content: space-around; font-weight: bold;">
-            <span style="color: #4CAF50;">Acertos: <span id="spanCertas">0</span></span>
-            <span style="color: #f44336;">Erros: <span id="spanErradas">0</span></span>
-        </div>
-        <div>
-            <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
-        </div>
+        <div class="conteudo-principal" style="align-items: center; display: flex; flex-direction: column;">
 
-        <div>
-            <h3 id="spanQuestaoExibida" style="margin: 0;"></h3>
-        </div>
+            <div class="titulo semi-conteudo">
+                <h1 class="destaque-colorido">Quiz</h1>
+            </div>
 
-        <div id="opcoes" style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
-            <span style="width: 100%;">
-                <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" class="radio-escondido" />
-                <label for="primeiraOpcao" id="labelOpcaoUm" class="opcao-botao"></label>
-            </span>
-            <span style="width: 100%;">
-                <input type="radio" id="segundaOpcao" name="option" value="alternativaB" class="radio-escondido" />
-                <label for="segundaOpcao" id="labelOpcaoDois" class="opcao-botao"></label>
-            </span>
-            <span style="width: 100%;">
-                <input type="radio" id="terceiraOpcao" name="option" value="alternativaC" class="radio-escondido" />
-                <label for="terceiraOpcao" id="labelOpcaoTres" class="opcao-botao"></label>
-            </span>
-            <span style="width: 100%;">
-                <input type="radio" id="quartaOpcao" name="option" value="alternativaD" class="radio-escondido" />
-                <label for="quartaOpcao" id="labelOpcaoQuatro" class="opcao-botao"></label>
-            </span>
-        </div>
+            <div class="janela-texto semi-conteudo" onclick="exibirCaixa()" id="botao" style="text-align: center;">
+                Começar!
+            </div>
+            <div class="janela-texto semi-conteudo jogo-container" id="containerDoJogo"
+                style="display: none; flex-direction: column; text-align: center; gap: 20px;">
 
-        <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
-            <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade"
-                style="color: white;">Responder</button>
-            <button onclick="avancar()" id="btnProx" class="botao-dificuldade" disabled
-                style="display: none; color: white;">Avançar</button>
-        </div>
-    </div>
+                <div id="pontuacaoDuranteJogo" style="display: flex; justify-content: space-around; font-weight: bold;">
+                    <span style="color: #4CAF50;">Acertos: <span id="spanCertas">0</span></span>
+                    <span style="color: #f44336;">Erros: <span id="spanErradas">0</span></span>
+                </div>
+                <div>
+                    <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
+                </div>
 
-    <div class="janela-texto semi-conteudo jogo-container" id="containerFinal"
-        style="display: none; flex-direction: column; text-align: center; gap: 20px;">
-        <h2 class="destaque-colorido" style="margin: 0;">Fim do Quiz!</h2>
-        <h3 style="margin: 0;">Pontuação Final: <span id="spanPontuacaoFinal"></span></h3>
-        <p id="msgFinal" style="font-weight: bold;"></p>
-        <div>
-            <button onclick="tentarNovamente()" class="botao-dificuldade">Tentar Novamente</button>
+                <div>
+                    <h3 id="spanQuestaoExibida" style="margin: 0;"></h3>
+                </div>
+
+                <div id="opcoes" style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                    <span style="width: 100%;">
+                        <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" class="radio-escondido" />
+                        <label for="primeiraOpcao" id="labelOpcaoUm" class="opcao-botao"></label>
+                    </span>
+                    <span style="width: 100%;">
+                        <input type="radio" id="segundaOpcao" name="option" value="alternativaB" class="radio-escondido" />
+                        <label for="segundaOpcao" id="labelOpcaoDois" class="opcao-botao"></label>
+                    </span>
+                    <span style="width: 100%;">
+                        <input type="radio" id="terceiraOpcao" name="option" value="alternativaC" class="radio-escondido" />
+                        <label for="terceiraOpcao" id="labelOpcaoTres" class="opcao-botao"></label>
+                    </span>
+                    <span style="width: 100%;">
+                        <input type="radio" id="quartaOpcao" name="option" value="alternativaD" class="radio-escondido" />
+                        <label for="quartaOpcao" id="labelOpcaoQuatro" class="opcao-botao"></label>
+                    </span>
+                </div>
+
+                <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
+                    <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade"
+                        style="color: white;">Responder</button>
+                    <button onclick="avancar()" id="btnProx" class="botao-dificuldade" disabled
+                        style="display: none; color: white;">Avançar</button>
+                </div>
+            </div>
+
+            <div class="janela-texto semi-conteudo jogo-container" id="containerFinal"
+                style="display: none; flex-direction: column; text-align: center; gap: 20px;">
+                <h2 class="destaque-colorido" style="margin: 0;">Fim do Quiz!</h2>
+                <h3 style="margin: 0;">Pontuação Final: <span id="spanPontuacaoFinal"></span></h3>
+                <p id="msgFinal" style="font-weight: bold;"></p>
+                <div>
+                    <button onclick="tentarNovamente()" class="botao-dificuldade">Tentar Novamente</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
