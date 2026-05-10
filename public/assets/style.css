@@ -488,3 +488,47 @@ h4 {
     width: 100%;
     max-width: 1100px;
 }
+
+.kpi-value {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.kpi-texto {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4facfe;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.kpi-texto.roxo {
+    color: #bf5ce0;
+}
+
+.card-neon {
+    background-color: rgba(0, 0, 0, 0.55);
+    border: 2px solid #4facfe;
+    border-radius: 12px;
+    padding: 20px 22px;
+    color: white;
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.35);
+    transition: all 0.15s ease-out;
+}
+
+.card-neon:hover {
+    /* transform com translate(X ou Y) move a posição do objeto para + ou -*/
+    transform: translateY(-3px);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(79, 172, 254, 0.5);
+}
+
+.card-neon.roxo {
+    border-color: #bf5ce0;
+    box-shadow: 0 0 15px rgba(191, 92, 224, 0.35);
+}
+
+.card-neon.roxo:hover {
+    box-shadow: 0 0 25px rgba(191, 92, 224, 0.5);
+}
