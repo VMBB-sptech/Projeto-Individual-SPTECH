@@ -34,7 +34,9 @@
         <div class="conteudo-principal">
             <div>
                 <div>
+                    <span class="mensagem-titulo">Bem Vindo </span>
                     <h1 class="destaque-colorido" id="nome_usuario"> Nome do Usuario</h1>
+                    <span class="mensagem-titulo"> ! </span>
                 </div>
             </div>
 
@@ -44,12 +46,12 @@
                     <span class="kpi-texto">Acertos Totais</span>
                     <span class="kpi-valor" id="kpi_acertos"> ?? </span>
                 </div>
-                <div class="card-neon roxo">
-                    <span class="kpi-texto roxo">Total de Tentativas</span>
+                <div class="card-neon">
+                    <span class="kpi-texto">Total de Tentativas</span>
                     <span class="kpi-valor" id="kpi_tentativas"> ?? </span>
                 </div>
-                <div class="card-neon">
-                    <span class="kpi-texto">Precisão Média (Ultimos 10)</span>
+                <div class="card-neon roxo">
+                    <span class="kpi-texto roxo">Precisão Média (Ultimos 10)</span>
                     <span class="kpi-valor" id="kpi_precisao"> ??%</span>
                 </div>
                 <div class="card-neon roxo">
@@ -59,7 +61,21 @@
             </div>
 
             <!-- Div para os graficos -->
-            <div class="chartjs-grid"></div>
+            <div class="chartjs-grid">
+                <div class="card-neon card-chart">
+                    <span class="titulo-chart"> Player Points máximo por dificuldade</span>
+                    <div class="caixa-chart">
+                        <canvas id="GraficoDeBarra"></canvas>
+                    </div>
+                </div>
+
+                <div class="card-neon roxo card-chart">
+                    <span class="titulo-chart roxo"> Resumo das Ultimas Tentativas</span>
+                    <div class="caixa-chart">
+                        <canvas id="GraficoDeLinha"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
