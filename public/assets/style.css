@@ -471,3 +471,20 @@ h4 {
     padding: 40px;
     font-size: 18px;
 }
+
+.kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+    margin-bottom: 28px;
+}
+
+.chartjs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+}
