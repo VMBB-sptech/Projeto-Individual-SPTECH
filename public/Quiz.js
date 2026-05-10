@@ -255,6 +255,7 @@ let quantidadeDeQuestoes = 0;
 let listaSelecionada = [];
 let playerPointsQuiz = 0;
 let multiplicadorPP = 0;
+let multiplicadorStreak = 1.0;
 
 function exibirCaixa() {
     botao.classList.add('expandida');
@@ -398,7 +399,8 @@ function checarResposta() {
     if (valorSelecionado == respostaCerta) {
         pontuacaoFinal++;
         certas++;
-        playerPointsQuiz += (2 * multiplicadorPP);
+        playerPointsQuiz += (2 * multiplicadorPP) * multiplicadorStreak;
+        multiplicadorStreak += 0.25;
         spanCertas.innerHTML = certas;
 
         labelSelecionada.style.backgroundColor = "#4CAF50";
@@ -408,7 +410,8 @@ function checarResposta() {
         spanErradas.innerHTML = erradas;
 
         if(playerPointsQuiz >= 6 ){
-            playerPointsQuiz -= (1.25 * multiplicadorPP);        
+            playerPointsQuiz -= (1.25 * multiplicadorPP);    
+            multiplicadorStreak = 1.0    
         }
         
         labelSelecionada.style.backgroundColor = "#f44336";
