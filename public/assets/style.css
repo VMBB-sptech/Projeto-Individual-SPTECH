@@ -345,6 +345,50 @@ h4 {
     margin-bottom: 20px;
 }
 
+.filtro-btn {
+    font-family: Oxanium;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 28px;
+    border: 2px solid rgba(191, 92, 224, 0.5);
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+
+.filtro-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(79, 172, 254, 0.8);
+    color: white;
+    transform: scale(1.08);
+    box-shadow: 0 0 18px rgba(79, 172, 254, 0.35);
+}
+
+.filtro-btn.ativo {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.25), rgba(191, 92, 224, 0.25));
+    border-color: rgba(79, 172, 254, 1);
+    color: white;
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+}
+
+.ranking-painel {
+    width: 90%;
+    max-width: 900px;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    border: 1px solid rgba(191, 92, 224, 0.3);
+    padding: 30px;
+    transition: all 0.4s ease;
+}
+
+.ranking-painel:hover {
+    background-color: rgba(0, 0, 0, 0.45);
+    border-color: rgba(79, 172, 254, 0.5);
+}
+
 .tabela-ranking {
     width: 100%;
     color: white;
@@ -353,38 +397,78 @@ h4 {
 .ranking-header, .ranking-row {
     display: flex;
     align-items: center;
-    padding: 12px 0;
-    transition: all 0.3s ease;
+    width: 100%;
 }
 
 .ranking-header {
     border-bottom: 2px solid rgba(191, 92, 224, 0.5);
-    font-weight: bold;
+    padding-bottom: 14px;
+}
+
+.col {
+    flex: 1;
+    text-align: center;
+    padding: 12px 10px;
+}
+
+.ranking-header .col {
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: rgba(255, 255, 255, 0.6);
-    font-size: 15px;
+    font-weight: bold;
 }
 
 .ranking-row {
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.3s ease;
 }
 
 .ranking-row:hover {
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-.col {
-    flex: 1;
-    text-align: center;
-    padding: 0 10px;
-}
-
 .ranking-ouro {
     background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), transparent);
     border-left: 3px solid rgba(255, 215, 0, 0.7);
 }
+
 .ranking-ouro .ranking-posicao {
     color: #ffd700;
+    font-weight: bold;
     font-size: 20px;
+}
+
+.ranking-prata {
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+    border-left: 3px solid rgba(192, 192, 192, 0.6);
+}
+
+.ranking-prata .ranking-posicao {
+    color: #c0c0c0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ranking-bronze {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+    border-left: 3px solid rgba(205, 127, 50, 0.6);
+}
+
+.ranking-bronze .ranking-posicao {
+    color: #cd7f32;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ranking-posicao {
+    font-weight: bold;
+    min-width: 40px;
+}
+
+.ranking-vazio {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 40px;
+    font-size: 18px;
 }
