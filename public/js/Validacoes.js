@@ -195,8 +195,38 @@ function cadastrarUsuario() {
         div_mensagem_cadastro.innerHTML = `<b style="color: green;">Senha Segura!</b>`;
     }
 
-    alert("Cadastro realizado com sucesso! Agora você pode fazer o login.");
-    mudarParaLogin();
+    // Enviando cadastro para a API
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+            {
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha
+            }
+        )
+    }).then(
+        function (resposta) {
+        if (resposta.ok) {
+            div_mensagem_cadastro.innerHTML = `<b style="color: green;">Cadastro realizado com sucesso!</b>`;
+            setTimeout(
+                function () { 
+                    mudarParaLogin(); 
+                }, 500);
+        } else {
+            resposta.text().then(
+                function (texto) {
+                div_mensagem_cadastro.innerHTML = `<b style="color: red;">Erro: ${texto}</b>`;
+                }
+            );
+        }
+    }).catch(
+        function (erro) {
+        console.log("Erro no cadastro:", erro);
+        div_mensagem_cadastro.innerHTML = `<b style="color: red;">Erro de conexão com o servidor</b>`;
+        }
+    );
 }
 
 function loginUsuario() {
@@ -229,7 +259,49 @@ function loginUsuario() {
         return;
     }
 
-    window.location.href = "AboutYou.html";
+    fetch("/usuarios/autenticar",
+        {
+            method: "POST",
+            headers: { "content-Type" : "application/json"},
+            body: JSON.stringify({
+                 emailServer: emailLogin,
+                senhaServer: senhaLogin
+            })
+        }
+    ).then (
+        function (resposta) {
+            if(resposta.ok){
+                resposta.json().then(
+                    function (json) {
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                        div_mensagem.style.display = "flex";
+                        div_mensagem.innerHTML = `<b style="color: green;">Login realizado!</b>`;
+
+                        setTimeout(
+                            function () { 
+                                window.location.href = "quiz.html"; 
+                            }, 500);
+                        }
+                    )
+                } else {
+                    resposta.text().then(
+                        function (texto) {
+                        div_mensagem.style.display = "flex";
+                        div_mensagem.innerHTML = `<b style="color: red;">${texto}</b>`;
+                        }
+                    );
+                }
+            }
+    ).catch (
+        function (erro) {
+            console.log("Erro no login:", erro);
+            div_mensagem.style.display = "flex";
+            div_mensagem.innerHTML = `<b style="color: red;">Erro de conexão com o servidor</b>`;
+        }
+    );
 }
 
 // Funções para mostrar/esconder a senha ao passar o cursor
