@@ -1,0 +1,20 @@
+# dependencias das paradas
+node_modules
+package-lock.json
+.github
+
+# Variáveis de ambiente
+.env
+.env.dev
+
+# Logs do Node.js
+*.log
+logs/
+npm-debug.log*
+
+# Arquivos temporários
+*.temp
+*.tmp
+
+#configurações pessoais
+.vscode/
