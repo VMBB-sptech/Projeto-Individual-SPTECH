@@ -56,7 +56,9 @@ function filtrar(filtro) {
     */
     for (let i = 0; i < dadosRanking.length - 1; i++) {
         for (let j = 0; j < dadosRanking.length - i - 1; j++){
-            if(dadosRanking[j][filtro] < dadosRanking[j + 1][filtro]){
+            let valorA = Number(dadosRanking[j][filtro]);
+            let valorB = Number(dadosRanking[j + 1][filtro]);
+            if(valorA < valorB){
                 let dadoTemp = dadosRanking[j];
                 dadosRanking[j] = dadosRanking[j + 1];
                 dadosRanking[j + 1] = dadoTemp; 
@@ -67,3 +69,22 @@ function filtrar(filtro) {
 
     renderizarTabela();
 }
+
+fetch("/tentativas/ranking").then(
+    function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(
+                function (dados) {
+                    dadosRanking = dados;
+                    renderizarTabela();
+                }
+            );
+        } else {
+            console.log("Erro ao buscar ranking");
+        }
+    }
+) .catch(
+    function (erro) {
+        console.log("Erro na requisição de ranking:", erro);
+    }
+);
