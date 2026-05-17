@@ -52,7 +52,7 @@
                     <span class="kpi-valor" id="kpi_tentativas"> ?? </span>
                 </div>
                 <div class="card-neon roxo">
-                    <span class="kpi-texto roxo">Precisão Média (Ultimos 10)</span>
+                    <span class="kpi-texto roxo">Precisão Média (Ultimas 10)</span>
                     <span class="kpi-valor" id="kpi_precisao"> ??%</span>
                 </div>
                 <div class="card-neon roxo">
@@ -103,7 +103,7 @@
                                 kpi_pp.innerHTML = `${(kpis.totalPP || 0)} pp`;
                             }
                         }
-                    )
+                    );
                 }
 
             }
@@ -111,7 +111,27 @@
             function (erro){
                 console.log(`Erro ao buscar as KPI's: ${erro}`);
             }
-        )
+        );
+
+        fetch("/tentativas/precisao-ultimas10/" + idUsuario).then(
+            function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(
+                        function (dados) {
+                            if (dados.length > 0 && dados[0].precisaoMedia !== null) {
+                                kpi_precisao.innerHTML = `${Math.round(dados[0].precisaoMedia)} %`;
+                            } else {
+                                kpi_precisao.innerHTML = `0%`;
+                            }
+                     }
+                    );
+                }
+            }
+        ) .catch(
+            function (erro) {
+                console.log(`Erro ao buscar a precisão: ${erro}`);
+            }
+        );
     }
 
 </script>

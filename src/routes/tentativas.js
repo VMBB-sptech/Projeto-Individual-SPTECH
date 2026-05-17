@@ -7,4 +7,12 @@ router.get("/kpis/:idUsuario", function (req, res) {
     tentativaController.buscarKPIs(req, res);
 });
 
+router.get("/precisao-ultimas10/:idUsuario", function (req, res) {
+    tentativaController.buscarPrecisaoUltimas10(req, res);
+});
+
+router.get("/ranking", function (req, res) {
+    tentativaController.buscarRanking(req, res);
+});
+
 module.exports = router;
