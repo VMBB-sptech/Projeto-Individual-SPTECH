@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre mim</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="fundo">
@@ -81,3 +82,36 @@
 
 </body>
 </html>
+
+<script src="js/sessao.js"></script>
+<script>
+    let idUsuario = sessionStorage.ID_USUARIO;
+    let nomeUsuario = sessionStorage.NOME_USUARIO;
+
+    nome_usuario.innerHTML = `${nomeUsuario}`;
+
+    if(idUsuario){
+        fetch("/tentativas/kips/" + idUsuario).then(
+            function (resposta){
+                if(resposta.ok){
+                    resposta.json().then(
+                        function (dados) {
+                            if(dados.length > 0){
+                                let kpis = dados[0];
+                                kpi_acertos = `${(kpis.totalAcertos || 0)}`;
+                                kpi_tentativas = `${(kpis.totalTentativas || 0)}`;
+                                kpi_pp = `${(kpis.totalPP || 0)} pp`;
+                            }
+                        }
+                    )
+                }
+
+            }
+        ) .catch (
+            function (erro){
+                console.log(`Erro ao buscar as KPI's: ${erro}`);
+            }
+        )
+    }
+
+</script>

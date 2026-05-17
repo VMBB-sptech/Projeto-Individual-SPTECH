@@ -224,7 +224,7 @@ function cadastrarUsuario() {
     }).catch(
         function (erro) {
         console.log("Erro no cadastro:", erro);
-        div_mensagem_cadastro.innerHTML = `<b style="color: red;">Erro de conexão com o servidor</b>`;
+        div_mensagem_cadastro.innerHTML = `<b style="color: red;">Algo inesperado aconteceu, tente novamente mais tarde</b>`;
         }
     );
 }
