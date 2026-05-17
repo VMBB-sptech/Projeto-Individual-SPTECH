@@ -91,16 +91,16 @@
     nome_usuario.innerHTML = `${nomeUsuario}`;
 
     if(idUsuario){
-        fetch("/tentativas/kips/" + idUsuario).then(
+        fetch("/tentativas/kpis/" + idUsuario).then(
             function (resposta){
                 if(resposta.ok){
                     resposta.json().then(
                         function (dados) {
                             if(dados.length > 0){
                                 let kpis = dados[0];
-                                kpi_acertos = `${(kpis.totalAcertos || 0)}`;
-                                kpi_tentativas = `${(kpis.totalTentativas || 0)}`;
-                                kpi_pp = `${(kpis.totalPP || 0)} pp`;
+                                kpi_acertos.innerHTML = `${(kpis.totalAcertos || 0)}`;
+                                kpi_tentativas.innerHTML = `${(kpis.totalTentativas || 0)}`;
+                                kpi_pp.innerHTML = `${(kpis.totalPP || 0)} pp`;
                             }
                         }
                     )
