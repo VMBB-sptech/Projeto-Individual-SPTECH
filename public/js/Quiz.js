@@ -256,6 +256,7 @@ let listaSelecionada = [];
 let playerPointsQuiz = 0;
 let multiplicadorPP = 0;
 let multiplicadorStreak = 1.0;
+let dificuldadeQuiz = "";
 
 function exibirCaixa() {
     botao.classList.add('expandida');
@@ -272,12 +273,15 @@ function exibirCaixa() {
 
 function prepararQuiz(dificuldade) {
     if (dificuldade == 'normal') {
+        dificuldadeQuiz = dificuldade;
         listaSelecionada = listaDeQuestoesNormal;
         multiplicadorPP = 1.0;
     } else if (dificuldade == 'hard') {
+        dificuldadeQuiz = dificuldade;
         listaSelecionada = listaDeQuestoesHard;
         multiplicadorPP = 2.0;
     } else if (dificuldade == 'veryHard') {
+        dificuldadeQuiz = dificuldade;
         listaSelecionada = listaDeQuestoesVeryHard;
         multiplicadorPP = 5.0;
     }
@@ -464,7 +468,39 @@ function finalizarJogo() {
  
     msgFinal.innerHTML = textoFinal;
     spanPontuacaoFinal.innerHTML = pontuacaoFinal;
-    
+
+    let idUsuario = sessionStorage.ID_USUARIO;
+    if (idUsuario) {
+        fetch("/tentativas/registrar", 
+            {
+                //post para enviar os dados
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                //stringify transforma em json
+                body: JSON.stringify(
+                    {
+                    fkUsuario: idUsuario,
+                    dificuldade: dificuldadeQuiz,
+                    acertos: certas,
+                    erros: erradas,
+                    playerPoints: playerPointsQuiz
+                    }
+                )
+            }
+        ).then(
+            function (resposta) {
+                if (resposta.ok) {
+                    console.log("Tentativa salva com sucesso!");
+                } else {
+                    console.log("Erro ao salvar tentativa");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log("Erro na requisição de salvar tentativa:", erro);
+            }
+        );
+    }
 }
 
 function tentarNovamente() {
