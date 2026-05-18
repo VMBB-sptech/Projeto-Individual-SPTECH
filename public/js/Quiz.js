@@ -256,6 +256,7 @@ let listaSelecionada = [];
 let playerPointsQuiz = 0;
 let multiplicadorPP = 0;
 let multiplicadorStreak = 1.0;
+let sequencia = 0;
 let dificuldadeQuiz = "";
 
 function exibirCaixa() {
@@ -403,20 +404,27 @@ function checarResposta() {
     if (valorSelecionado == respostaCerta) {
         pontuacaoFinal++;
         certas++;
+        sequencia++;
         playerPointsQuiz += (2 * multiplicadorPP) * multiplicadorStreak;
         multiplicadorStreak += 0.25;
         spanCertas.innerHTML = certas;
+        spanStreak.innerHTML = sequencia;
+        spanPP.innerHTML = playerPointsQuiz;
 
         labelSelecionada.style.backgroundColor = "#4CAF50";
         labelSelecionada.style.color = "white";
     } else {
         erradas ++;
-        spanErradas.innerHTML = erradas;
+        sequencia = 0;
+        spanErradas.innerHTML = erradas
+        spanStreak = sequencia;
 
         if(playerPointsQuiz >= 6 ){
             playerPointsQuiz -= (1.25 * multiplicadorPP);    
             multiplicadorStreak = 1.0    
         }
+
+        spanPP.innerHTML = playerPointsQuiz;
         
         labelSelecionada.style.backgroundColor = "#f44336";
         labelSelecionada.style.color = "white";

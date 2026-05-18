@@ -126,7 +126,6 @@ h4 {
     max-width: 50%;
 
     transition: all 0.5s ease-out;
-
 }
 
 .janela-texto:hover {
@@ -134,6 +133,34 @@ h4 {
     background-color: rgba(255, 255, 255, 0.125);
     backdrop-filter: blur(5px); 
 }
+
+.jogo-container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.35);
+
+    /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    min-height: 15px;
+    width: 50%;
+    overflow: hidden;
+
+    max-width: 75%;
+
+    transition: all 0.5s ease-out;
+
+}
+
+.jogo-container:hover{
+    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px); 
+}
+
+
 
 .conteudo {
     display: flex;
@@ -154,16 +181,20 @@ h4 {
 .janela-texto.expandida {
     font-size: 20px;
     width: fit-content;
+    width: 40%;
+    height: 50%;
+    max-height: 50%;
     max-width: 62.5%;
     height: fit-content;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(5px);
     cursor: default;
 }
 
 .janela-texto.expandida:hover {
     transform: scale(1.0125);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .janela-texto.expandida .conteudo {

@@ -98,7 +98,7 @@
                         function (dados) {
                             if(dados.length > 0){
                                 let kpis = dados[0];
-                                kpi_acertos.innerHTML = `${(kpis.totalAcertos || 0)}`;
+                                kpi_acertos.innerHTML = `${(kpis.totalAcertos || 0)} / ${(Number(kpis.totalAcertos) + Number(kpis.totalErros) || 0)}`;
                                 kpi_tentativas.innerHTML = `${(kpis.totalTentativas || 0)}`;
                                 kpi_pp.innerHTML = `${(kpis.totalPP || 0)} pp`;
                             }
