@@ -464,6 +464,7 @@ function finalizarJogo() {
  
     msgFinal.innerHTML = textoFinal;
     spanPontuacaoFinal.innerHTML = pontuacaoFinal;
+    
 }
 
 function tentarNovamente() {

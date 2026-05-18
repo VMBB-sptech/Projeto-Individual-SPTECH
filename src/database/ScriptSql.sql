@@ -1,4 +1,4 @@
--- criação do database (será removido depois)
+-- criação do database
 CREATE DATABASE projIndividual;
 USE projIndividual;
 

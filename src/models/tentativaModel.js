@@ -42,8 +42,19 @@ function buscarRanking() {
     return database.executar(instrucaoSql);
 }
 
+function registrar(fkUsuario, dificuldade, acertos, erros, playerPoints) {
+    console.log("ACESSEI O TENTATIVA MODEL - function registrar():", fkUsuario, dificuldade, acertos, erros, playerPoints);
+    var instrucaoSql = `
+        INSERT INTO tentativa (fkUsuario, dificuldade, acertos, erros, playerPoints) 
+        VALUES (${fkUsuario}, '${dificuldade}', ${acertos}, ${erros}, ${playerPoints});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarPrecisaoUltimas10,
-    buscarRanking
+    buscarRanking,
+    registrar
 };

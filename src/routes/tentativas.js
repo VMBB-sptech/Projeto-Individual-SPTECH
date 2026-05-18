@@ -15,4 +15,8 @@ router.get("/ranking", function (req, res) {
     tentativaController.buscarRanking(req, res);
 });
 
+router.post("/registrar", function (req, res) {
+    tentativaController.registrar(req, res);
+});
+
 module.exports = router;

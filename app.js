@@ -1,4 +1,4 @@
-var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = 'producao';
 // mudar para producao qnd terminar aqui
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
