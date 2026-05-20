@@ -32,10 +32,10 @@ function buscarPrecisaoUltimas10(idUsuario) {
 function buscarRanking() {
     console.log("ACESSEI O TENTATIVA MODEL - function buscarRanking()");
     var instrucaoSql = `
-        SELECT u.nome, t.dificuldade, t.acertos, t.erros, t.playerPoints, t.data_hora
-        FROM tentativa t
-        JOIN usuario u ON t.fkUsuario = u.id
-        ORDER BY t.playerPoints DESC
+        SELECT usuario.nome, tentativa.dificuldade, tentativa.acertos, tentativa.erros, tentativa.playerPoints, tentativa.data_hora
+        FROM tentativa AS tentativa
+        JOIN usuario AS usuario ON tentativa.fkUsuario = usuario.id
+        ORDER BY tentativa.playerPoints DESC
         LIMIT 50;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
