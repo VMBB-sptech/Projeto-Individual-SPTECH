@@ -417,7 +417,7 @@ function checarResposta() {
         erradas ++;
         sequencia = 0;
         spanErradas.innerHTML = erradas
-        spanStreak = sequencia;
+        spanStreak.innerHTML = sequencia;
 
         if(playerPointsQuiz >= 6 ){
             playerPointsQuiz -= (1.25 * multiplicadorPP);    
