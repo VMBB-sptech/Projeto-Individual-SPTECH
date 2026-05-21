@@ -30,7 +30,17 @@ if(idUsuario){
                 resposta.json().then(
                     function (dados) {
                         if (dados.length > 0 && dados[0].precisaoMedia !== null) {
-                            kpi_precisao.innerHTML = `${Math.round(dados[0].precisaoMedia)} %`;
+                            var precisaoFormatada = Math.round(dados[0].precisaoMedia);
+                            if(precisaoFormatada >= 95){
+                                kpi_precisao.innerHTML = `<span class="destaque-colorido">${precisaoFormatada} %</span>`;
+                            } else if(precisaoFormatada > 90){
+                                kpi_precisao.style.color = "#00ff87";
+                                kpi_precisao.innerHTML = `${precisaoFormatada} %`;
+                            }else if(precisaoFormatada < 25){
+                                kpi_precisao.innerHTML = `<span style="color: #ff5e98;">${precisaoFormatada} %</span>`;
+                            }else {
+                                kpi_precisao.innerHTML = `${precisaoFormatada} %`;
+                            }
                         } else {
                             kpi_precisao.innerHTML = `0%`;
                         }
