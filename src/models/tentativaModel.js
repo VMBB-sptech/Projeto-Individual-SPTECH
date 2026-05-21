@@ -52,14 +52,15 @@ function registrar(fkUsuario, dificuldade, acertos, erros, playerPoints) {
     return database.executar(instrucaoSql);
 }
 
-function buscarPorUsuario(idUsuario){
+function buscarPorUsuario(idUsuario) {
     console.log("ACESSEI O TENTATIVA MODEL - function buscarPorUsuario():", idUsuario);
     var instrucaoSql = `
         SELECT id, dificuldade, acertos, erros, playerPoints, data_hora 
         FROM tentativa WHERE fkUsuario = ${idUsuario}
         ORDER BY data_hora DESC;
     `;
-    console.log("Executando a instruçção SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 module.exports = {

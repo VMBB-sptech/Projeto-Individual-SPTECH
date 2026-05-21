@@ -1,48 +1,125 @@
 let idUsuario = sessionStorage.ID_USUARIO;
-    let nomeUsuario = sessionStorage.NOME_USUARIO;
+let nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    nome_usuario.innerHTML = `${nomeUsuario}`;
+nome_usuario.innerHTML = `${nomeUsuario}`;
 
-    if(idUsuario){
-        fetch("/tentativas/kpis/" + idUsuario).then(
-            function (resposta){
-                if(resposta.ok){
-                    resposta.json().then(
-                        function (dados) {
-                            if(dados.length > 0){
-                                let kpis = dados[0];
-                                kpi_acertos.innerHTML = `${(kpis.totalAcertos || 0)} / ${(Number(kpis.totalAcertos) + Number(kpis.totalErros) || 0)}`;
-                                kpi_tentativas.innerHTML = `${(kpis.totalTentativas || 0)}`;
-                                kpi_pp.innerHTML = `${(kpis.totalPP || 0)} pp`;
+if(idUsuario){
+    fetch("/tentativas/kpis/" + idUsuario).then(
+        function (resposta){
+            if(resposta.ok){
+                resposta.json().then(
+                    function (dados) {
+                        if(dados.length > 0){
+                            let kpis = dados[0];
+                            kpi_acertos.innerHTML = `${(kpis.totalAcertos || 0)} / ${(Number(kpis.totalAcertos) + Number(kpis.totalErros) || 0)}`;
+                            kpi_tentativas.innerHTML = `${(kpis.totalTentativas || 0)}`;
+                            kpi_pp.innerHTML = `${(kpis.totalPP || 0)} pp`;
+                        }
+                    }
+                );
+            }
+        }
+    ) .catch (
+        function (erro){
+            console.log(`Erro ao buscar as KPI's: ${erro}`);
+        }
+    );
+    fetch("/tentativas/precisao-ultimas10/" + idUsuario).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                    function (dados) {
+                        if (dados.length > 0 && dados[0].precisaoMedia !== null) {
+                            kpi_precisao.innerHTML = `${Math.round(dados[0].precisaoMedia)} %`;
+                        } else {
+                            kpi_precisao.innerHTML = `0%`;
+                        }
+                 }
+                );
+            }
+        }
+    ) .catch(
+        function (erro) {
+            console.log(`Erro ao buscar a precisão: ${erro}`);
+        }
+    );
+
+    fetch("/tentativas/usuario/" + idUsuario).then(
+        function(resposta){
+            if(resposta.ok){
+                resposta.json().then(
+                    function(dados) {
+                        let melhorNormal = 0;
+                        let melhorHard = 0;
+                        let melhorEspecialista = 0;
+
+                        for(let i = 0; i < dados.length; i++){
+                            let temp = dados[i];
+                            let pp = parseFloat(temp.playerPoints) || 0;
+                            if(temp.dificuldade === "normal" && pp >  melhorNormal){
+                                melhorNormal = pp;
+                            } else if (temp.dificuldade === "hard" && pp > melhorHard) {
+                                melhorHard = pp;
+                            } else if (temp.dificuldade === "veryHard" && pp > melhorEspecialista){
+                                melhorEspecialista = pp;
                             }
                         }
-                    );
-                }
 
+                        criargraficoDeBarras(melhorNormal, melhorHard, melhorEspecialista);
+                    }
+                );
             }
-        ) .catch (
-            function (erro){
-                console.log(`Erro ao buscar as KPI's: ${erro}`);
-            }
-        );
+        }
+    ).catch(
+        function(erro){
+            console.log("Erro ao buscar dados no grafico: ", erro)
+        }
+    );
 
-        fetch("/tentativas/precisao-ultimas10/" + idUsuario).then(
-            function (resposta) {
-                if (resposta.ok) {
-                    resposta.json().then(
-                        function (dados) {
-                            if (dados.length > 0 && dados[0].precisaoMedia !== null) {
-                                kpi_precisao.innerHTML = `${Math.round(dados[0].precisaoMedia)} %`;
-                            } else {
-                                kpi_precisao.innerHTML = `0%`;
-                            }
-                     }
-                    );
+    function criargraficoDeBarras(normal, hard, especialista) {
+        let ctx = GraficoDeBarra.getContext("2d");
+
+        new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Normal', 'Difícil', 'Especialista'],
+                    datasets: [{
+                        label: 'Melhor PP',
+                        data: [normal, hard, especialista],
+                        backgroundColor: [
+                            'rgba(46, 204, 113, 0.55)',
+                            'rgba(231, 76, 60, 0.55)',
+                            'rgba(255, 255, 255, 0.55)'
+                        ],
+                        borderColor: [
+                            '#2ecc71',
+                            '#e74c3c',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                            ticks: { color: 'rgba(255,255,255,0.7)' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255,255,255,0.7)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
                 }
-            }
-        ) .catch(
-            function (erro) {
-                console.log(`Erro ao buscar a precisão: ${erro}`);
-            }
-        );
-    }
+            });
+        }
+} else {
+    criargraficoDeBarras(0,0,0)
+}

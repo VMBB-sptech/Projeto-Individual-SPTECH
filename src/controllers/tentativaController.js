@@ -75,10 +75,10 @@ function registrar(req, res) {
     }
 }
 
-function buscarPorJogador(req, res){
+function buscarPorUsuario(req, res){
     var idUsuario = req.params.idUsuario;
 
-    tentativaModel.buscarPorUsuario().then(
+    tentativaModel.buscarPorUsuario(idUsuario).then(
         function (resultado){
             res.json(resultado);
         }
@@ -94,5 +94,6 @@ module.exports = {
     buscarKPIs,
     buscarPrecisaoUltimas10,
     buscarRanking,
-    registrar
+    registrar,
+    buscarPorUsuario
 }
