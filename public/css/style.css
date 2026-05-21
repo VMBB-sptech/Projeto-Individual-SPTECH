@@ -128,7 +128,32 @@ h4 {
     transition: all 0.5s ease-out;
 }
 
+.janela-texto2 {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    /*blur para deixar com efeito de "opaco" (Chiquérrimo btw) aqui é quase invisivel devido a ser 1px*/
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    min-height: 15px;
+    width: 250px;
+    overflow: hidden;
+
+    max-width: 50%;
+
+    transition: all 0.5s ease-out;
+}
+
 .janela-texto:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.125);
+    backdrop-filter: blur(5px); 
+}
+
+.janela-texto2:hover {
     transform: scale(1.05);
     background-color: rgba(255, 255, 255, 0.125);
     backdrop-filter: blur(5px); 
@@ -168,8 +193,8 @@ h4 {
     flex-direction: column;
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
     /* esconde o que sobrar*/
+    overflow: hidden;
     transition: all 0.5s ease 0.3s;
     gap: 20px;
 }
@@ -181,10 +206,10 @@ h4 {
 .janela-texto.expandida {
     font-size: 20px;
     width: fit-content;
-    width: 40%;
+    width: 72.5%;
     height: 50%;
     max-height: 50%;
-    max-width: 62.5%;
+    max-width: 82.5%;
     height: fit-content;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.15);
@@ -198,6 +223,31 @@ h4 {
 }
 
 .janela-texto.expandida .conteudo {
+    opacity: 1;
+    margin-top: 15px;
+    max-height: fit-content;
+}
+
+.janela-texto2.expandida {
+    font-size: 20px;
+    width: fit-content;
+    width: 40%;
+    height: 50%;
+    max-height: 50%;
+    max-width: 50%;
+    height: fit-content;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    cursor: default;
+}
+
+.janela-texto2.expandida:hover {
+    transform: scale(1.0125);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.janela-texto2.expandida .conteudo {
     opacity: 1;
     margin-top: 15px;
     max-height: fit-content;
