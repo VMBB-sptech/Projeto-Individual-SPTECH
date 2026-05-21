@@ -30,7 +30,7 @@ if(idUsuario){
                 resposta.json().then(
                     function (dados) {
                         if (dados.length > 0 && dados[0].precisaoMedia !== null) {
-                            var precisaoFormatada = Math.round(dados[0].precisaoMedia);
+                            let precisaoFormatada = Math.round(dados[0].precisaoMedia);
                             if(precisaoFormatada >= 95){
                                 kpi_precisao.innerHTML = `<span class="destaque-colorido">${precisaoFormatada} %</span>`;
                             } else if(precisaoFormatada > 90){
@@ -86,6 +86,22 @@ if(idUsuario){
         }
     );
 
+    fetch("/tentativas/ultimas10/" + idUsuario).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(
+                    function (dados) {
+                        criarGraficoLinhas(dados);
+                    }
+                );
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.log("Erro ao buscar últimas tentativas:", erro);
+        }
+    );
+
     function criargraficoDeBarras(normal, hard, especialista) {
         let ctx = GraficoDeBarra.getContext("2d");
 
@@ -130,6 +146,50 @@ if(idUsuario){
                 }
             });
         }
+
+        function criarGraficoLinhas(dados){
+            let labels = [];
+            let hardData = [];
+            let normalData = [];
+            let veryHardData = [];
+            
+            //.reverse inverte a ordem da contagem, logo começa do .length
+            let totalPontos = dadosRevertidos.length;
+            let dadosRevertidos = dados.slice().reverse();
+            
+            for (let i = 0; i < totalPontos; i++) {
+                labels.push("#" + (i + 1));
+            }
+            
+            //preenchendo apenas onde a dificuldade é igual
+            for (let i = 0; i < totalPontos; i++) {
+                let temp = dadosRevertidos[i];
+                let precisão = parseFloat(temp.precisao) || 0;
+
+                if (temp.dificuldade === "Normal") {
+                    normalData.push(precisão);
+                    hardData.push(null);
+                    veryHardData.push(null);
+
+                } else if (temp.dificuldade === "Hard") {
+                    normalData.push(null);
+                    hardData.push(precisão);
+                    veryHardData.push(null);
+
+                } else if (temp.dificuldade === "veryHard") {
+                    normalData.push(null);
+                    hardData.push(null);
+                    veryHardData.push(precisão);
+
+                } else {
+                    //tudo nulo pois não achou nada
+                    normalData.push(null);
+                    hardData.push(null);
+                    veryHardData.push(null);
+                }
+            }
+        }
 } else {
-    criargraficoDeBarras(0,0,0)
+    criargraficoDeBarras(0,0,0);
+    criarGraficoLinhas([]);
 }
