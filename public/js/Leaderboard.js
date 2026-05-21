@@ -8,30 +8,86 @@ function renderizarTabela() {
     let corpo = corpo_ranking;
     corpo.innerHTML = "";
 
+    let cabeçalho = document.querySelector(".ranking-header");
+
     if (dadosRanking.length == 0 || dadosRanking == null) {
         corpo.innerHTML = `<div class="ranking-vazio">Nenhum dado encontrado</div>`;
         return;
     }
 
-    for (let i = 0; i < dadosRanking.length; i++) {
-        let linha = dadosRanking[i];
+    if (filtroAtual === "playerPoints") {
+        cabeçalho.innerHTML = `
+            <div class="col">Ranking</div>
+            <div class="col">Jogador</div>
+            <div class="col">Acertos Totais</div>
+            <div class="col">Erros Totais</div>
+            <div class="col">Player Points (Total)</div>
+        `;
+    } else if (filtroAtual === "mediaAcertos") {
+        cabeçalho.innerHTML = `
+            <div class="col">Ranking</div>
+            <div class="col">Jogador</div>
+            <div class="col">Quizes Realizados</div>
+            <div class="col">Média de Acertos (%)</div>
+        `;
+    } else {
+        // Para filtros "acertos" e "erros" (individuais)
+        cabeçalho.innerHTML = `
+            <div class="col">Ranking</div>
+            <div class="col">Jogador</div>
+            <div class="col">Dificuldade</div>
+            <div class="col">Acertos</div>
+            <div class="col">Erros</div>
+            <div class="col">Player Points</div>
+        `;
+    }
 
+    // renderizanod as linhas das tabelas
+    for (let i = 0; i < dadosExibicao.length; i++) {
+        let linha = dadosExibicao[i];
         let classeEspecial = ``;
         let textoPos = i + 1;
 
+        //rankeano os top 3
         if (i < 3) {
             classeEspecial = classePosicao[i];
             textoPos = medalhasPosicao[i];
         }
 
-        corpo.innerHTML += ` <div class="ranking-row ${classeEspecial}">
-                                <div class="col ranking-posicao">${textoPos}</div>
-                                <div class="col">${linha.nome}</div>
-                                <div class="col">${linha.dificuldade}</div>
-                                <div class="col">${linha.acertos}</div>
-                                <div class="col">${linha.erros}</div>
-                                <div class="col">${linha.playerPoints}</div>
-                            </div>`;
+        //aplicando os filtros
+        if (filtroAtual === "playerPoints") {
+            // layout exclusivo para o agrupamento
+            corpo.innerHTML += `
+                <div class="ranking-row ${classeEspecial}">
+                    <div class="col ranking-posicao">${textoPos}</div>
+                    <div class="col">${linha.nome}</div>
+                    <div class="col">${linha.acertos}</div>
+                    <div class="col">${linha.erros}</div>
+                    <div class="col">${Number(linha.playerPoints).toFixed(2)}</div>
+                </div>`;
+
+        } else if (filtroAtual === "mediaAcertos") {
+            // media de acertos e tal
+            corpo.innerHTML += `
+                <div class="ranking-row ${classeEspecial}">
+                    <div class="col ranking-posicao">${textoPos}</div>
+                    <div class="col">${linha.nome}</div>
+                    <div class="col">${linha.qtdTentativas}</div>
+                    <div class="col">${Number(linha.mediaAcertos).toFixed(1)}%</div>
+                </div>`;
+
+        } else {
+            //filtro que estava na versão alterior (puramente mantido por conta dos dois filtros do meio)
+            corpo.innerHTML += `
+                <div class="ranking-row ${classeEspecial}">
+                    <div class="col ranking-posicao">${textoPos}</div>
+                    <div class="col">${linha.nome}</div>
+                    <div class="col">${linha.dificuldade}</div>
+                    <div class="col">${linha.acertos}</div>
+                    <div class="col">${linha.erros}</div>
+                    <div class="col">${Number(linha.playerPoints).toFixed(2)}</div>
+                </div>`;
+        }
     }
 }
 
@@ -76,7 +132,7 @@ fetch("/tentativas/ranking").then(
             resposta.json().then(
                 function (dados) {
                     dadosRanking = dados;
-                    renderizarTabela();
+                    filtrar('playerPoints');
                 }
             );
         } else {
