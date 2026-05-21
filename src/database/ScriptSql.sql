@@ -32,12 +32,12 @@ INSERT INTO usuario VALUES
 (DEFAULT, "Julio Cesar", "julioCesarFalcao@gmail.com", "umaSenhaPlaceholderBemLegal");
 
 INSERT INTO tentativa VALUES
+(DEFAULT, 1, "veryHard", 6, 4, 40, DEFAULT),
 (DEFAULT, 1, "normal", 2, 8, 4.50, DEFAULT),
+(DEFAULT, 1, "hard", 8, 2, 35.00, DEFAULT),
 (DEFAULT, 1, "normal", 5, 5, 12.25, DEFAULT),
 (DEFAULT, 1, "normal", 8, 2, 36.50, DEFAULT),
-(DEFAULT, 1, "hard", 8, 2, 35.00, DEFAULT),
-(DEFAULT, 1, "hard", 8, 2, 43.00, DEFAULT),
 (DEFAULT, 1, "hard", 9, 1, 49.50, DEFAULT),
-(DEFAULT, 1, "veryHard", 6, 4, 40, DEFAULT),
 (DEFAULT, 1, "veryHard", 7, 3, 73.75, DEFAULT),
+(DEFAULT, 1, "hard", 8, 2, 43.00, DEFAULT),
 (DEFAULT, 1, "veryHard", 9, 1, 138.75, DEFAULT);
