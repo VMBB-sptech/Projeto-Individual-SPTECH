@@ -154,8 +154,8 @@ if(idUsuario){
             let veryHardData = [];
             
             //.reverse inverte a ordem da contagem, logo começa do .length
-            let totalPontos = dadosRevertidos.length;
             let dadosRevertidos = dados.slice().reverse();
+            let totalPontos = dadosRevertidos.length;
             
             for (let i = 0; i < totalPontos; i++) {
                 labels.push("#" + (i + 1));
@@ -166,12 +166,12 @@ if(idUsuario){
                 let temp = dadosRevertidos[i];
                 let precisão = parseFloat(temp.precisao) || 0;
 
-                if (temp.dificuldade === "Normal") {
+                if (temp.dificuldade === "normal") {
                     normalData.push(precisão);
                     hardData.push(null);
                     veryHardData.push(null);
 
-                } else if (temp.dificuldade === "Hard") {
+                } else if (temp.dificuldade === "hard") {
                     normalData.push(null);
                     hardData.push(precisão);
                     veryHardData.push(null);
@@ -188,6 +188,111 @@ if(idUsuario){
                     veryHardData.push(null);
                 }
             }
+
+            //Agora sim criando o gráfico
+            let ctx = GraficoDeLinha.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Normal',
+                            data: normalData,
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.15)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#2ecc71',
+                            pointRadius: 6,
+                            pointHoverRadius: 9,
+                            tension: 0.3,
+                            fill: false,
+                            spanGaps: true
+                        },
+                        {
+                            label: 'Difícil',
+                            data: hardData,
+                            borderColor: '#e73f2d',
+                            backgroundColor: 'rgba(231, 76, 60, 0.15)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#e74c3c',
+                            pointRadius: 6,
+                            pointHoverRadius: 9,
+                            tension: 0.3,
+                            fill: false,
+                            spanGaps: true
+                        },
+                        {
+                            label: 'Especialista',
+                            data: veryHardData,
+                            borderColor: '#ffffff',
+                            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#ffffff',
+                            pointRadius: 6,
+                            pointHoverRadius: 9,
+                            tension: 0.3,
+                            fill: false,
+                            spanGaps: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.7)',
+                                callback: 
+                                function (value){
+                                    return value + '%';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Precisão',
+                                color: 'rgba(255,255,255,0.5)'
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255,255,255,0.7)' },
+                            title: {
+                                display: true,
+                                text: 'Tentativa',
+                                color: 'rgba(255,255,255,0.5)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: 'rgba(255,255,255,0.8)',
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                padding: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: 
+                                function (context){
+                                    if (context.parsed.y === null){
+                                        return '';
+                                    }
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
 } else {
     criargraficoDeBarras(0,0,0);

@@ -110,5 +110,6 @@ module.exports = {
     buscarPrecisaoUltimas10,
     buscarRanking,
     registrar,
-    buscarPorUsuario
+    buscarPorUsuario,
+    buscarUltimas10
 }
