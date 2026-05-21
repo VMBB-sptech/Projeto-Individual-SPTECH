@@ -35,8 +35,7 @@ function buscarRanking() {
         SELECT usuario.nome, tentativa.dificuldade, tentativa.acertos, tentativa.erros, tentativa.playerPoints, tentativa.data_hora
         FROM tentativa AS tentativa
         JOIN usuario AS usuario ON tentativa.fkUsuario = usuario.id
-        ORDER BY tentativa.playerPoints DESC
-        LIMIT 50;
+        ORDER BY tentativa.data_hora DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
