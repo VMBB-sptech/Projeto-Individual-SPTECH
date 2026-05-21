@@ -23,4 +23,8 @@ router.get("/usuario/:idUsuario", function (req, res) {
     tentativaController.buscarPorUsuario(req, res);
 });
 
+router.get("/ultimas10/:idUsuario", function (req, res) {
+    tentativaController.buscarUltimas10(req, res);
+});
+
 module.exports = router;

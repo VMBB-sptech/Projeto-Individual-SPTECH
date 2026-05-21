@@ -63,10 +63,25 @@ function buscarPorUsuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarUltimas10(idUsuario){
+    console.log("ACESSEI O TENTATIVA MODEL - function buscarUltimas10():", idUsuario);
+    var instrucaoSql = `
+        SELECT id, dificuldade, acertos, erros, playerPoints, data_hora,
+        ROUND((acertos / (acertos + erros)) * 100, 1) as precisao
+        FROM tentativa 
+        WHERE fkUsuario = ${idUsuario}
+        ORDER BY data_hora DESC
+        LIMIT 10;
+    `;
+    console.log("Executando a intrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarPrecisaoUltimas10,
     buscarRanking,
     registrar,
-    buscarPorUsuario
+    buscarPorUsuario,
+    buscarUltimas10
 };

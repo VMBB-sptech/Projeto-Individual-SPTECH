@@ -90,6 +90,21 @@ function buscarPorUsuario(req, res){
     );
 }
 
+function buscarUltimas10(req, res){
+    var idUsuario = req.params.idUsuario;
+
+    tentativaModel.buscarUltimas10(idUsuario).then(
+        function(resultado){
+            res.json(resultado);
+        }
+    ).catch(
+        function(erro){
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 module.exports = {
     buscarKPIs,
     buscarPrecisaoUltimas10,
