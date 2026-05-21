@@ -19,4 +19,8 @@ router.post("/registrar", function (req, res) {
     tentativaController.registrar(req, res);
 });
 
+router.post("/buscarPorJogador", function (req,res) {
+    tentativaController.buscarPorJogador(req,res);
+});
+
 module.exports = router;

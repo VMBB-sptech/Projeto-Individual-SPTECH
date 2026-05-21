@@ -4,10 +4,10 @@ function buscarKPIs(idUsuario) {
     console.log("ACESSEI O TENTATIVA MODEL - function buscarKPIs():", idUsuario);
     var instrucaoSql = `
         SELECT 
-            SUM(acertos) as totalAcertos,
-            SUM(erros) as totalErros,
-            COUNT(*) as totalTentativas,
-            SUM(playerPoints) as totalPP
+            SUM(acertos) AS totalAcertos,
+            SUM(erros) AS totalErros,
+            COUNT(*) AS totalTentativas,
+            SUM(playerPoints) AS totalPP
         FROM tentativa WHERE fkUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -17,7 +17,7 @@ function buscarKPIs(idUsuario) {
 function buscarPrecisaoUltimas10(idUsuario) {
     console.log("ACESSEI O TENTATIVA MODEL - function buscarPrecisaoUltimas10():", idUsuario);
     var instrucaoSql = `
-        SELECT AVG(precisao) as precisaoMedia FROM (
+        SELECT AVG(precisao) AS precisaoMedia FROM (
             SELECT (acertos / (acertos + erros)) * 100 as precisao
             FROM tentativa 
             WHERE fkUsuario = ${idUsuario}
@@ -52,9 +52,20 @@ function registrar(fkUsuario, dificuldade, acertos, erros, playerPoints) {
     return database.executar(instrucaoSql);
 }
 
+function buscarPorUsuario(idUsuario){
+    console.log("ACESSEI O TENTATIVA MODEL - function buscarPorUsuario():", idUsuario);
+    var instrucaoSql = `
+        SELECT id, dificuldade, acertos, erros, playerPoints, data_hora 
+        FROM tentativa WHERE fkUsuario = ${idUsuario}
+        ORDER BY data_hora DESC;
+    `;
+    console.log("Executando a instruçção SQL: \n" + instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarPrecisaoUltimas10,
     buscarRanking,
-    registrar
+    registrar,
+    buscarPorUsuario
 };
