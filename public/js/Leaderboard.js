@@ -31,7 +31,7 @@ function renderizarTabela() {
             <div class="col">Média de Acertos (%)</div>
         `;
     } else {
-        // Para filtros "acertos" e "erros" (individuais)
+        // Para filtros "acertos" e "erros" (meiucas)
         cabeçalho.innerHTML = `
             <div class="col">Ranking</div>
             <div class="col">Jogador</div>
@@ -94,7 +94,6 @@ function renderizarTabela() {
 function filtrar(filtro) {
     filtroAtual = filtro;
 
-    //querySelectorAll busca tudo que tem o "argumento" e coloca em uma lista
     let botoes = document.querySelectorAll(".filtro-button");
 
     for (let i = 0; i < botoes.length; i++) {
@@ -102,27 +101,146 @@ function filtrar(filtro) {
     }
 
     let filtroSelecionado = `filtro_${filtro}`;
+
     let botaoSelecionado = document.getElementById(filtroSelecionado);
-    botaoSelecionado.className = "filtro-button ativo";
 
-    // fazendo um bubble sort padrão
-    /*
-        algoritmo de ordenação simples que organiza uma lista comparando pares de elementos adjacentes
-        troca-os de lugar se estiverem na ordem errada
-    */
-    for (let i = 0; i < dadosRanking.length - 1; i++) {
-        for (let j = 0; j < dadosRanking.length - i - 1; j++) {
-            let valorA = Number(dadosRanking[j][filtro]);
-            let valorB = Number(dadosRanking[j + 1][filtro]);
-            if (valorA < valorB) {
-                let dadoTemp = dadosRanking[j];
-                dadosRanking[j] = dadosRanking[j + 1];
-                dadosRanking[j + 1] = dadoTemp;
-            }
-
-        }
+    if (botaoSelecionado) {
+        botaoSelecionado.className = "filtro-button ativo";
     }
 
+    if (filtro === "playerPoints") {
+
+        let agrupado = [];
+
+        for (let i = 0; i < dadosRanking.length; i++) {
+            let player = null;
+            let temp = dadosRanking[i];
+            
+            for (let g = 0; g < agrupado.length; g++) {
+                if (agrupado[g].nome === temp.nome) {
+                    player = agrupado[g];
+                    break;
+                }
+            }
+
+            if (player) {
+                player.acertos += Number(temp.acertos);
+                player.erros += Number(temp.erros);
+                player.playerPoints += Number(temp.playerPoints);
+            } else {
+                agrupado.push(
+                    {
+                        nome: temp.nome,
+                        acertos: Number(temp.acertos),
+                        erros: Number(temp.erros),
+                        playerPoints: Number(temp.playerPoints)
+                    }
+                );
+            }
+        }
+
+        // Ordenação por Player Points (Bubble Sort)
+        //algoritmo simples que percorre uma lista comparando elementos vizinhos, trocando-os de lugar se estiverem na ordem "errada" (um menor que o anterior)
+        for (let i = 0; i < agrupado.length - 1; i++) {
+            for (let j = 0; j < agrupado.length - i - 1; j++) {
+                let valorA = Number(agrupado[j].playerPoints);
+                let valorB = Number(agrupado[j + 1].playerPoints);
+                if (valorA < valorB) {
+                    let temp = agrupado[j];
+                    agrupado[j] = agrupado[j + 1];
+                    agrupado[j + 1] = temp;
+                }
+            }
+        }
+        dadosExibicao = agrupado;
+    } else if (filtro === "mediaAcertos") {
+
+        let agrupadoMedia = [];
+        
+        for (let i = 0; i < dadosRanking.length; i++) {
+            let player = null;
+            let temp = dadosRanking[i];
+
+            for (let j = 0; j < agrupadoMedia.length; j++) {
+                if (agrupadoMedia[j].nome === temp.nome) {
+                    player = agrupadoMedia[j];
+                    break;
+                }
+            }
+
+            if (player) {
+                if (player.tentativas.length < 10) {
+                    player.tentativas.push(temp);
+                }
+            } else {
+                agrupadoMedia.push(
+                    {
+                    nome: temp.nome,
+                    tentativas: [temp]
+                    }
+                );
+            }
+        }
+        
+        let listaResultado = [];
+
+        for (let i = 0; i < agrupadoMedia.length; i++) {
+            let somaPorcentagem = 0;
+            let player = agrupadoMedia[i];
+
+            for (let j = 0; j < player.tentativas.length; j++) {
+                let temp = player.tentativas[j];
+                let totalPerguntas = Number(temp.acertos) + Number(temp.erros);
+                let precisao = totalPerguntas > 0 ? (Number(temp.acertos) / totalPerguntas) * 100 : 0;
+
+                somaPorcentagem += precisao;
+            }
+
+            let media = somaPorcentagem / player.tentativas.length;
+
+            listaResultado.push(
+                {
+                    nome: player.nome,
+                    qtdTentativas: player.tentativas.length,
+                    mediaAcertos: media
+                }
+            );
+        }
+
+        for (let i = 0; i < listaResultado.length - 1; i++) {
+            for (let j = 0; j < listaResultado.length - i - 1; j++) {
+                let valorA = Number(listaResultado[j].mediaAcertos);
+                let valorB = Number(listaResultado[j + 1].mediaAcertos);
+                if (valorA < valorB) {
+                    let temp = listaResultado[j];
+                    listaResultado[j] = listaResultado[j + 1];
+                    listaResultado[j + 1] = temp;
+                }
+            }
+        }
+        dadosExibicao = listaResultado;
+
+    } else {
+
+        let copiaDados = [];
+
+        for (let i = 0; i < dadosRanking.length; i++) {
+            copiaDados.push(dadosRanking[i]);
+        }
+
+        for (let i = 0; i < copiaDados.length - 1; i++) {
+            for (let j = 0; j < copiaDados.length - i - 1; j++) {
+                let valorA = Number(copiaDados[j][filtro]);
+                let valorB = Number(copiaDados[j + 1][filtro]);
+                if (valorA < valorB) {
+                    let temp = copiaDados[j];
+                    copiaDados[j] = copiaDados[j + 1];
+                    copiaDados[j + 1] = temp;
+                }
+            }
+        }
+        dadosExibicao = copiaDados;
+    }
     renderizarTabela();
 }
 
