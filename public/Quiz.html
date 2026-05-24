@@ -38,8 +38,7 @@
             <div class="janela-texto2 semi-conteudo" onclick="exibirCaixa()" id="botao" style="text-align: center;">
                 Começar!
             </div>
-            <div class="semi-conteudo jogo-container" id="containerDoJogo"
-                style="display: none; flex-direction: column; text-align: center; gap: 20px;">
+            <div class="semi-conteudo jogo-container" id="containerDoJogo" style="display: none; flex-direction: column; text-align: center; gap: 20px;">
 
                 <div id="pontuacaoDuranteJogo" style="display: flex; justify-content: space-around; font-weight: bold;">
                     <span style="color: #f166fe;">Pontuação: <span id="spanPP">0</span></span>
@@ -55,7 +54,8 @@
                     <h3 id="spanQuestaoExibida" style="margin: 0;"></h3>
                 </div>
 
-                <div id="opcoes" style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <div id="opcoes"
+                    style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
                     <span style="width: 100%;">
                         <input type="radio" id="primeiraOpcao" name="option" value="alternativaA" class="radio-escondido" />
                         <label for="primeiraOpcao" id="labelOpcaoUm" class="opcao-botao"></label>
@@ -75,13 +75,11 @@
                 </div>
 
                 <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
-                    <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade"
-                        style="color: white;">Responder</button>
+                    <button onclick="submeter()" id="btnSubmeter" class="botao-dificuldade" style="color: white;">Responder</button>
                 </div>
             </div>
 
-            <div class="janela-texto semi-conteudo jogo-container" id="containerFinal"
-                style="display: none; flex-direction: column; text-align: center; gap: 20px;">
+            <div class="janela-texto semi-conteudo jogo-container" id="containerFinal" style="display: none; flex-direction: column; text-align: center; gap: 20px;">
                 <h2 class="destaque-colorido" style="margin: 0;">Fim do Quiz!</h2>
                 <h3 style="margin: 0;">Pontuação Final: <span id="spanPontuacaoFinal"></span></h3>
                 <p id="msgFinal" style="font-weight: bold;"></p>
