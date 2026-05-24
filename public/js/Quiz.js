@@ -311,36 +311,11 @@ function preencherHTMLcomQuestaoAtual(index) {
 }
 
 
-function habilitarAlternativas(habilitar) {
-    if (habilitar == true) {
-        primeiraOpcao.disabled = false;
-        segundaOpcao.disabled = false;
-        terceiraOpcao.disabled = false;
-        quartaOpcao.disabled = false;
-    } else {
-        primeiraOpcao.disabled = true;
-        segundaOpcao.disabled = true;
-        terceiraOpcao.disabled = true;
-        quartaOpcao.disabled = true;
-    }
-}
-
 function desmarcarRadioButtons() {
     primeiraOpcao.checked = false;
     segundaOpcao.checked = false;
     terceiraOpcao.checked = false;
     quartaOpcao.checked = false;
-}
-
-function limparCoresBackgroundOpcoes() {
-    labelOpcaoUm.style.backgroundColor = "";
-    labelOpcaoUm.style.color = "";
-    labelOpcaoDois.style.backgroundColor = "";
-    labelOpcaoDois.style.color = "";
-    labelOpcaoTres.style.backgroundColor = "";
-    labelOpcaoTres.style.color = "";
-    labelOpcaoQuatro.style.backgroundColor = "";
-    labelOpcaoQuatro.style.color = "";
 }
 
 function submeter() {
@@ -359,13 +334,8 @@ function submeter() {
     if (!selecionouAlguma) {
         alert("Escolha uma opção antes de responder!");
     } else {
-        btnSubmeter.style.display = "none";
-        btnProx.style.display = "inline-block";
-        btnProx.disabled = false;
-
-        habilitarAlternativas(false);
-
         checarResposta();
+        avancar();
     }
 }
 
@@ -374,31 +344,15 @@ function checarResposta() {
     const respostaCerta = questaoAtual.alternativaCorreta;
 
     let valorSelecionado = "";
-    let labelSelecionada = null;
 
     if (primeiraOpcao.checked == true) {
         valorSelecionado = primeiraOpcao.value;
-        labelSelecionada = labelOpcaoUm;
     } else if (segundaOpcao.checked == true) {
         valorSelecionado = segundaOpcao.value;
-        labelSelecionada = labelOpcaoDois;
     } else if (terceiraOpcao.checked == true) {
         valorSelecionado = terceiraOpcao.value;
-        labelSelecionada = labelOpcaoTres;
     } else if (quartaOpcao.checked == true) {
         valorSelecionado = quartaOpcao.value;
-        labelSelecionada = labelOpcaoQuatro;
-    }
-
-    let labelCorreta = null;
-    if (respostaCerta == "alternativaA") {
-        labelCorreta = labelOpcaoUm;
-    } else if (respostaCerta == "alternativaB") {
-        labelCorreta = labelOpcaoDois;
-    } else if (respostaCerta == "alternativaC") {
-        labelCorreta = labelOpcaoTres;
-    } else if (respostaCerta == "alternativaD") {
-        labelCorreta = labelOpcaoQuatro;
     }
 
     if (valorSelecionado == respostaCerta) {
@@ -410,39 +364,25 @@ function checarResposta() {
         spanCertas.innerHTML = certas;
         spanStreak.innerHTML = sequencia;
         spanPP.innerHTML = playerPointsQuiz;
-
-        labelSelecionada.style.backgroundColor = "#4CAF50";
-        labelSelecionada.style.color = "white";
     } else {
-        erradas ++;
+        erradas++;
         sequencia = 0;
         spanErradas.innerHTML = erradas
         spanStreak.innerHTML = sequencia;
 
-        if(playerPointsQuiz >= 6 ){
-            playerPointsQuiz -= (1.25 * multiplicadorPP);    
-            multiplicadorStreak = 1.0    
+        if (playerPointsQuiz >= 6) {
+            playerPointsQuiz -= (1.25 * multiplicadorPP);
+            multiplicadorStreak = 1.0
         }
 
         spanPP.innerHTML = playerPointsQuiz;
-        
-        labelSelecionada.style.backgroundColor = "#f44336";
-        labelSelecionada.style.color = "white";
-
-        labelCorreta.style.backgroundColor = "#4CAF50";
-        labelCorreta.style.color = "white";
     }
 
     numeroDaQuestaoAtual = numeroDaQuestaoAtual + 1;
 }
 
 function avancar() {
-    btnProx.style.display = "none";
-    btnSubmeter.style.display = "inline-block";
-
     desmarcarRadioButtons();
-    limparCoresBackgroundOpcoes();
-    habilitarAlternativas(true);
 
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
         preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
@@ -473,13 +413,13 @@ function finalizarJogo() {
     }
 
     textoFinal = textoFinal + "<br>Você acertou " + Math.round(porcentagem * 100) + "% do Quiz.";
- 
+
     msgFinal.innerHTML = textoFinal;
     spanPontuacaoFinal.innerHTML = pontuacaoFinal;
 
     let idUsuario = sessionStorage.ID_USUARIO;
     if (idUsuario) {
-        fetch("/tentativas/registrar", 
+        fetch("/tentativas/registrar",
             {
                 //post para enviar os dados
                 method: "POST",
@@ -487,11 +427,11 @@ function finalizarJogo() {
                 //stringify transforma em json
                 body: JSON.stringify(
                     {
-                    fkUsuario: idUsuario,
-                    dificuldade: dificuldadeQuiz,
-                    acertos: certas,
-                    erros: erradas,
-                    playerPoints: playerPointsQuiz
+                        fkUsuario: idUsuario,
+                        dificuldade: dificuldadeQuiz,
+                        acertos: certas,
+                        erros: erradas,
+                        playerPoints: playerPointsQuiz
                     }
                 )
             }
