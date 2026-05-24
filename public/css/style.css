@@ -418,6 +418,20 @@ h4 {
     transform: scale(1.05);
 }
 
+/* o que é "!important" ele força a propriedade a ser aplicada*/
+.link-lateral.desabilitado {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    background-image: none !important;
+    color: #666 !important;
+    opacity: 0.5 !important;
+}
+.link-lateral.desabilitado:hover {
+    background-color: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
 .filtros-ranking {
     display: flex;
     gap: 12px;
