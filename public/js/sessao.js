@@ -42,7 +42,6 @@ function verificarAcessoProfile() {
                                 let linkProfile = document.querySelector(".barra-lateral a[href='AboutYou.html']");
                                 if (linkProfile) {
                                     linkProfile.classList.add("desabilitado");
-                                    linkProfile.title = "Realize uma tentativa no quiz para continuar";
                                 }
                             }
                         }
