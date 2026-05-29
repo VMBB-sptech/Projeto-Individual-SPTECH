@@ -18,6 +18,8 @@ function verificarAcessoProfile() {
     if (!idUsuario) {
         return;
     }
+
+    
     fetch(`/tentativas/kpis/${idUsuario}`).then(
         function (resposta) {
             if (resposta.ok) {

@@ -488,7 +488,8 @@ h4 {
     color: white;
 }
 
-.ranking-header.ranking-row {
+/* com a virgula os itens abaixo são aplicados em ambas das cçasses*/
+.ranking-header, .ranking-row {
     display: flex;
     align-items: center;
     width: 100%;
