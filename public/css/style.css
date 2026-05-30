@@ -170,7 +170,7 @@ h4 {
     backdrop-filter: blur(2px);
     border-radius: 20px;
     min-height: 15px;
-    width: 50%;
+    width: 67%;
     overflow: hidden;
 
     max-width: 75%;
@@ -665,4 +665,26 @@ h4 {
 .mensagem-titulo {
     color: white;
     font-size: xx-large;
+}
+
+.alternativa-quiz {
+    display: flex;
+    width: 90%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    border-color: white;
+    transition: all 0.3s ease-out;
+}
+
+.alternativa-quiz:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.expandida2 {
+    transform: scale(1.05);
 }

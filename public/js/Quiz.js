@@ -259,6 +259,9 @@ let multiplicadorStreak = 1.0;
 let sequencia = 0;
 let dificuldadeQuiz = "";
 
+let AlternativaStyle = null;
+let AlternativaAtual = "";
+
 function exibirCaixa() {
     botao.classList.add('expandida');
     botao.innerHTML = `
@@ -290,6 +293,7 @@ function prepararQuiz(dificuldade) {
     quantidadeDeQuestoes = listaSelecionada.length;
 
     botao.style.display = "none";
+    tituloQuiz.style.display = "none";
     containerDoJogo.style.display = "flex";
 
     qtdQuestoes.innerHTML = quantidadeDeQuestoes;
@@ -304,34 +308,25 @@ function preencherHTMLcomQuestaoAtual(index) {
 
     spanNumeroDaQuestaoAtual.innerHTML = index + 1;
     spanQuestaoExibida.innerHTML = questaoAtual.pergunta;
-    labelOpcaoUm.innerHTML = questaoAtual.alternativaA;
-    labelOpcaoDois.innerHTML = questaoAtual.alternativaB;
-    labelOpcaoTres.innerHTML = questaoAtual.alternativaC;
-    labelOpcaoQuatro.innerHTML = questaoAtual.alternativaD;
+    AlternativaA.innerHTML = questaoAtual.alternativaA;
+    AlternativaB.innerHTML = questaoAtual.alternativaB;
+    AlternativaC.innerHTML = questaoAtual.alternativaC;
+    AlternativaD.innerHTML = questaoAtual.alternativaD;
 }
 
+function selecionarOpcao(alternativa){
+    resetarBotões();
 
-function desmarcarRadioButtons() {
-    primeiraOpcao.checked = false;
-    segundaOpcao.checked = false;
-    terceiraOpcao.checked = false;
-    quartaOpcao.checked = false;
+    alternativa.style.backgroundColor = "rgba(255, 255, 255, 0.55)";
+    alternativa.style.color = "black";
+    alternativa.style.transform = "scale(1.05)";
+
+    AlternativaStyle = alternativa;
+    AlternativaAtual = alternativa.id;
 }
 
 function submeter() {
-    let selecionouAlguma = false;
-
-    if (primeiraOpcao.checked) {
-        selecionouAlguma = true;
-    } else if (segundaOpcao.checked) {
-        selecionouAlguma = true;
-    } else if (terceiraOpcao.checked) {
-        selecionouAlguma = true;
-    } else if (quartaOpcao.checked) {
-        selecionouAlguma = true;
-    }
-
-    if (!selecionouAlguma) {
+    if (!AlternativaAtual || AlternativaAtual.trim() === "") {
         alert("Escolha uma opção antes de responder!");
     } else {
         checarResposta();
@@ -340,22 +335,10 @@ function submeter() {
 }
 
 function checarResposta() {
-    const questaoAtual = listaSelecionada[numeroDaQuestaoAtual];
-    const respostaCerta = questaoAtual.alternativaCorreta;
+    let questaoAtual = listaSelecionada[numeroDaQuestaoAtual];
+    let respostaCerta = questaoAtual.alternativaCorreta;
 
-    let valorSelecionado = "";
-
-    if (primeiraOpcao.checked == true) {
-        valorSelecionado = primeiraOpcao.value;
-    } else if (segundaOpcao.checked == true) {
-        valorSelecionado = segundaOpcao.value;
-    } else if (terceiraOpcao.checked == true) {
-        valorSelecionado = terceiraOpcao.value;
-    } else if (quartaOpcao.checked == true) {
-        valorSelecionado = quartaOpcao.value;
-    }
-
-    if (valorSelecionado == respostaCerta) {
+    if (AlternativaAtual.toLowerCase() == respostaCerta.toLowerCase()) {
         pontuacaoFinal++;
         certas++;
         sequencia++;
@@ -382,9 +365,12 @@ function checarResposta() {
 }
 
 function avancar() {
-    desmarcarRadioButtons();
+    resetarBotões();
 
-    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+    AlternativaStyle = null;
+    AlternativaAtual = "";
+
+    if(numeroDaQuestaoAtual < quantidadeDeQuestoes){
         preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
     } else {
         finalizarJogo();
@@ -448,6 +434,14 @@ function finalizarJogo() {
                 console.log("Erro na requisição de salvar tentativa:", erro);
             }
         );
+    }
+}
+
+function resetarBotões (){
+    if (AlternativaStyle !== null) {
+        AlternativaStyle.style.backgroundColor = "rgba(0, 0, 0, 0.15)";
+        AlternativaStyle.style.color = "white";
+        AlternativaStyle.style.transform = "scale(1.0)";
     }
 }
 
